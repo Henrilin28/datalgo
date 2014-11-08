@@ -9,7 +9,7 @@
 #ifndef __interview__tree__
 #define __interview__tree__
 
-#include <stdio.h>
+#include <iostream>
 
 
 template <typename value_type> class Tree {
@@ -24,6 +24,7 @@ private:
     node_t *left;
     node_t *right;
     node_t *parent;
+    //~node_t() { std::cout << "node " << val << " deleted\n";}
   };
   
   node_t *_root;

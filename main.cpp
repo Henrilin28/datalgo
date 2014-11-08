@@ -593,11 +593,11 @@ bool test_tree() {
   tree.add(1);
   tree.add(0);
   tree.add(2);
-  tree.in_order();
-  std::cout << tree.size() << "\n";
-  tree.empty();
-  std::cout << tree.size() << "\n";
-  return false;
+  //tree.in_order();
+  //std::cout << tree.size() << "\n";
+  tree.delete_nodes();
+  //std::cout << tree.size() << "\n";
+  return tree.size() == 0;
 }
 
 
@@ -675,19 +675,11 @@ private:
 void test_WebHistory() {
   WebHistory wh;
   wh.add_url("google.com");
-  wh.add_url("wsj.com");
+  wh.add_url("yahoo.com");
   wh.add_url("apple.com");
   wh.add_url("google.com");
   
   wh.showUrls();
-  std::cout << "====\n";
-  std::map<std::string, std::string> m;
-  m["google.com"] = "google.com";
-  m["apple.com"] = "apple.com";
-  m["wsj.com"] = "wsj.com";
-  for (auto &e: m) {
-    std::cout << e.second << "\n";
-  }
 }
 
 int main(int argc, const char * argv[]) {
@@ -727,9 +719,7 @@ int main(int argc, const char * argv[]) {
     std::cout << merged[i] << "\n";
   */
   
-  int *px = NULL;//new int[10];
-  printf("size of x: %lu\n", sizeof(px));
-  delete [] px;
+  
   
   boost::asio::io_service io_service;
   io_service.run();
@@ -806,9 +796,6 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_is_palindrome)
   RUN_TEST(test_find_node)
   RUN_TEST(test_tree)
-  std::cout << fibo(1) << ", " << fibo(2) << ", " << fibo(3) << ", " << fibo(4) << "\n";
-  test_tree();
-  std::cout << "===========\n";
   test_WebHistory();
   test_sortbin();
   RUN_TEST(test_reverser_list)
