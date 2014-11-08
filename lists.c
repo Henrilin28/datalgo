@@ -157,7 +157,7 @@ void remove_node(node_t **head, int val) {
   
   
 }
-//felippe
+
 
 void reverse_list(node_t **phead) {
   
