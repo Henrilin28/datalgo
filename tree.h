@@ -28,7 +28,7 @@ private:
   
   node_t *_root;
   
-  void delete_tree(node_t *node) {
+  void _delete_tree(node_t *node) {
     if (node != nullptr) {
       if (node->left == nullptr && node->right == nullptr) {
         if (node->parent && node->parent->left == node) {
@@ -40,8 +40,8 @@ private:
         delete node;
       }
       else {
-        delete_tree(node->left);
-        delete_tree(node->right);
+        _delete_tree(node->left);
+        _delete_tree(node->right);
         delete node;
       }
     }
@@ -49,8 +49,8 @@ private:
   
 public:
   Tree():_root(nullptr) {}
-  void empty() {
-    delete_tree(_root);
+  void delete_nodes() {
+    _delete_tree(_root);
     _root = nullptr;
   }
   
@@ -65,6 +65,7 @@ public:
     _in_order(_root);
   }
   ~Tree() {
+      delete_nodes();
   }
 
 private:
