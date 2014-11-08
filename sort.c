@@ -146,19 +146,4 @@ int part(int arr[], int start, int end) {
 }
 
 
-int uniques(int arr[], int len)
-{
-  int i = 0;
-  int last = 0;
-  
-  while (++i < len) {
-    if (arr[i] != arr[last]) {
-      last++;
-      arr[last] = arr[i];
-    }
-  }
-  
-  return last;
-}
-
 

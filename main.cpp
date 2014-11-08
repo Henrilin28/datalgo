@@ -218,12 +218,6 @@ bool test_remove_node() {
   
 }
 
-bool test_uniques() {
-  int arr[] = {3, 4, 2, 1, 3};
-  int index = uniques(arr, 5);
-  std::cout << "index: " << index << "\n";
-  return true;
-}
 
 bool test_quick_sort() {
   int arr[] = {3, 4, 2, 1, 3};
@@ -786,7 +780,6 @@ int main(int argc, const char * argv[]) {
   //test_permut();
   //test_polynomial();
   //test_lrucache();
-  //test_uniques();
   //test_quick_sort();
   RUN_TEST(test_is_palindrome)
   RUN_TEST(test_find_node)
