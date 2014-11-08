@@ -130,6 +130,10 @@ void remove_list_dups2(node_t *head) {
   
 }
 
+unsigned int list_len_rec(node_t *head) {
+  if (head == NULL) return 0;
+  else return 1 + list_len_rec(head->next);
+}
 
 void remove_node(node_t **head, int val) {
   node_t *p1 = *head;

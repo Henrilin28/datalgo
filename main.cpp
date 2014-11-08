@@ -196,7 +196,7 @@ bool test_reverser_list() {
   
   //traverse_node(head, print_node);
   
-  return list_len(head) == 6 && head->val == 6;
+  return list_len_rec(head) == 6 && head->val == 6;
 }
 
 bool test_remove_node() {
@@ -601,7 +601,9 @@ bool test_tree() {
 }
 
 
-
+/*
+ sort an array of 0s and 1s in linear time
+ */
 void sortbin(int arr[], int len) {
   int last_zero = 0;
   
@@ -611,15 +613,34 @@ void sortbin(int arr[], int len) {
   
   for (int i = 0; i < len - 1; i++) {
     if (arr[i] > arr[i + 1]) {
-      std::swap(arr[i], arr[i + 1]);
-      std::swap(arr[i], arr[last_zero++]);
+      std::swap(arr[i + 1], arr[last_zero++]);
     }
   }
 }
 
+
+/*
+ sort an array of 0s and 1s in linear time 
+ another way
+ */
+void sortbin2(int arr[], int len) {
+  
+  for (int i = 0; i < len; i++) {
+    if (arr[i] == 1) arr[i] = 2;
+  }
+  
+  int last_zero = 0;
+  for (int i = 0; i < len; i++) {
+    if (arr[i] < 1) {
+      std::swap(arr[i], arr[last_zero++]);
+    }
+    else arr[i] = 1;
+  }
+}
+
 void test_sortbin() {
-  int arr[] = {0, 1, 0, 1, 0, 1, 0, 1, 0, 1};
-  sortbin(arr, 10);
+  int arr[] = {1, 1, 0, 1, 0, 1, 0, 0, 0, 1};
+  sortbin2(arr, 10);
   for (auto i: arr) {
     std::cout << i << "\n";
   }
@@ -629,13 +650,14 @@ void test_sortbin() {
 class WebHistory {
 public:
   void add_url(std::string url) {
+    
     auto it = map.find(url);
     if (it != map.end()) {
       urls.erase(it->second);
       
     }
-    auto new_url = urls.insert(urls.end(), url);
-    map[url] = new_url;
+    auto new_url_it = urls.insert(urls.end(), url);
+    map[url] = new_url_it;
   }
   
   void showUrls() {
@@ -789,7 +811,7 @@ int main(int argc, const char * argv[]) {
   std::cout << "===========\n";
   test_WebHistory();
   test_sortbin();
-  //test_partition();
+  RUN_TEST(test_reverser_list)
   return 0;
   
 }

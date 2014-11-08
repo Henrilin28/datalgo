@@ -34,10 +34,10 @@ extern "C" {
   node_t* remove_list_dups(node_t **head);
   void remove_list_dups2(node_t *head);
   unsigned int list_len(node_t *head);
+  unsigned int list_len_rec(node_t *head);
   void traverse_node(node_t *head, func_ptr func);
   void free_list(node_t **head);
   void reverse_list(node_t **phead);
-  void longest_substr(char *str1, char *str2);
 
   
 #ifdef __cplusplus
