@@ -421,10 +421,6 @@ public:
     this->poly = m;
   }
   
-  Polynomial(const Polynomial& other) {
-    this->poly = other.poly;
-  }
-  
   Polynomial& operator = (const Polynomial& rhs) {
     if (this != &rhs) {
       this->poly = rhs.poly;
@@ -456,7 +452,7 @@ private:
   
 };
 
-Polynomial const operator + (const Polynomial& lhs, const Polynomial& rhs) {
+const Polynomial operator + (const Polynomial& lhs, const Polynomial& rhs) {
   
   std::map<Polynomial::degree, Polynomial::coefficient> m;
   
