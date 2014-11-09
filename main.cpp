@@ -636,7 +636,7 @@ void sortbin2(int arr[], int len) {
 
 void test_sortbin() {
   int arr[] = {1, 1, 0, 1, 0, 1, 0, 0, 0, 1};
-  sortbin2(arr, 10);
+  sortbin(arr, 10);
   for (auto i: arr) {
     std::cout << i << "\n";
   }
@@ -676,6 +676,42 @@ void test_WebHistory() {
   wh.add_url("google.com");
   
   wh.showUrls();
+}
+
+/*
+ * Removes dups from an array in linear time using a hashmap
+ * Returns the index in the array before which there is all 
+ * the elements of the array without dups.
+ */
+int remove_dups_from_array(int arr[], unsigned int len) {
+  std::unordered_map<int, int> hashmap;
+  int next_slot = 0;
+  
+  for (int i = 0; i < len; i++) {
+    if (hashmap.find(arr[i]) == hashmap.end()) {
+      arr[next_slot++] = arr[i];
+      hashmap.insert({arr[i], arr[i]});
+    }
+  }
+  return next_slot;
+}
+
+bool test_remove_dups_from_array() {
+  bool ret = true;
+  int arr[] = {1, 0, 0, 2, 2, 2, 4, 3, 3, 5, 6, 6};
+  int result[] = {1, 0, 2, 4, 3, 5, 6};
+  
+  int index = remove_dups_from_array(arr, 12);
+  
+  /*
+  for (int j = 0; j < index; j++) {
+    std::cout << arr[j] << "\n";
+  }
+  */
+  
+  ret = std::equal(arr, arr + 7, result);
+  
+  return ret;
 }
 
 int main(int argc, const char * argv[]) {
@@ -795,6 +831,7 @@ int main(int argc, const char * argv[]) {
   test_WebHistory();
   test_sortbin();
   RUN_TEST(test_reverser_list)
+  RUN_TEST(test_remove_dups_from_array)
   return 0;
   
 }
