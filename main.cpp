@@ -679,23 +679,6 @@ void test_WebHistory() {
   wh.showUrls();
 }
 
-/*
- * Removes dups from an array in linear time using a hashmap
- * Returns the index in the array before which there is all 
- * the elements of the array without dups.
- */
-int remove_dups_from_array(int arr[], unsigned int len) {
-  std::unordered_map<int, int> hashmap;
-  int next_slot = 0;
-  
-  for (int i = 0; i < len; i++) {
-    if (hashmap.find(arr[i]) == hashmap.end()) {
-      arr[next_slot++] = arr[i];
-      hashmap.insert({arr[i], arr[i]});
-    }
-  }
-  return next_slot;
-}
 
 bool test_remove_dups_from_array() {
   bool ret = true;

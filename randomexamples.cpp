@@ -8,6 +8,27 @@
 
 #include "randomexamples.h"
 #include <math.h>
+#include <unordered_map>
+
+
+/*
+ * Removes dups from an array in linear time using a hashmap
+ * Returns the index in the array before which there is all
+ * the elements of the array without dups.
+ */
+int remove_dups_from_array(int arr[], unsigned int len) {
+  std::unordered_map<int, int> hashmap;
+  int next_slot = 0;
+  
+  for (int i = 0; i < len; i++) {
+    if (hashmap.find(arr[i]) == hashmap.end()) {
+      arr[next_slot++] = arr[i];
+      hashmap.insert({arr[i], arr[i]});
+    }
+  }
+  return next_slot;
+}
+
 
 node_t *add_numbers_as_list(node_t *head1, node_t *head2) {
   node_t *new_head = NULL;
