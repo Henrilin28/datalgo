@@ -76,3 +76,13 @@ int from_list_to_number(node_t *head, unsigned int exp) {
   }
 }
 
+int from_list_to_number2(node_t *head, unsigned int exp, int sofar) {
+  if (!head) {
+    return sofar;
+  }
+  else {
+    return from_list_to_number2(head->next, exp + 1, sofar + (head->val * pow(10, exp)));
+  }
+}
+
+

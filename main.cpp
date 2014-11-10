@@ -731,7 +731,7 @@ bool test_add_numbers_as_list() {
   
   //traverse_node(new_head, print_node);
   
-  return (from_list_to_number(new_head, 0) == 808);
+  return (from_list_to_number2(new_head, 0, 0) == 808);
 }
 
 int main(int argc, const char * argv[]) {
