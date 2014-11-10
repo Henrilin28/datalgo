@@ -1,0 +1,21 @@
+//
+//  randomexamples.h
+//  interview
+//
+//  Created by Iyed Bennour on 09/11/2014.
+//  Copyright (c) 2014 Iyed Bennour. All rights reserved.
+//
+
+#ifndef __interview__randomexamples__
+#define __interview__randomexamples__
+
+#include <stdio.h>
+
+
+#include "lists.h"
+
+node_t *add_numbers_as_list(node_t *head1, node_t *head2);
+node_t *add_numbers_as_list_rec(node_t *head1, node_t *head2, unsigned int carry);
+int from_list_to_number(node_t *head, unsigned int exp);
+
+#endif /* defined(__interview__randomexamples__) */

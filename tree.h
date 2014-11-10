@@ -13,6 +13,7 @@
 
 
 template <typename value_type> class Tree {
+
 private:
   struct node_t {
     node_t(value_type _val, node_t *par):val(_val) {

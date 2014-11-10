@@ -19,6 +19,7 @@
 #include <unordered_map>
 #include "tree.h"
 #include <map>
+#include "randomexamples.h"
 
 namespace detail {
   template <int N> struct BIT {
@@ -703,15 +704,34 @@ bool test_remove_dups_from_array() {
   
   int index = remove_dups_from_array(arr, 12);
   
-  /*
+  
   for (int j = 0; j < index; j++) {
     std::cout << arr[j] << "\n";
   }
-  */
+  
   
   ret = std::equal(arr, arr + 7, result);
   
   return ret;
+}
+
+bool test_add_numbers_as_list() {
+  bool ret = true;
+  node_t *head1 = NULL;
+  add_node(&head1, 3);
+  add_node(&head1, 1);
+  add_node(&head1, 5);
+  node_t *head2 = NULL;
+  add_node(&head2, 5);
+  add_node(&head2, 9);
+  add_node(&head2, 2);
+  //add_node(&head2, 1);
+  
+  node_t *new_head = add_numbers_as_list_rec(head1, head2, 0);
+  
+  //traverse_node(new_head, print_node);
+  
+  return (from_list_to_number(new_head, 0) == 808);
 }
 
 int main(int argc, const char * argv[]) {
@@ -832,6 +852,7 @@ int main(int argc, const char * argv[]) {
   test_sortbin();
   RUN_TEST(test_reverser_list)
   RUN_TEST(test_remove_dups_from_array)
+  RUN_TEST(test_add_numbers_as_list)
   return 0;
   
 }
