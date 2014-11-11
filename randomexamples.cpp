@@ -32,24 +32,6 @@ int remove_dups_from_array(int arr[], unsigned int len) {
 }
 
 
-bool test_remove_dups_from_array() {
-  bool ret = true;
-  int arr[] = {1, 0, 0, 2, 2, 2, 4, 3, 3, 5, 6, 6};
-  int result[] = {1, 0, 2, 4, 3, 5, 6};
-  
-  int index = remove_dups_from_array(arr, 12);
-  
-  
-  for (int j = 0; j < index; j++) {
-    std::cout << arr[j] << "\n";
-  }
-  
-  
-  ret = std::equal(arr, arr + 7, result);
-  
-  return ret;
-}
-
 
 node_t *add_numbers_as_list(node_t *head1, node_t *head2) {
   node_t *new_head = NULL;
@@ -163,6 +145,74 @@ void sortbin2(int arr[], int len) {
   }
 }
 
+bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index) {
+  if (last < first)
+    return false;
+  else {
+    size_t half = (first + last) / 2;
+    if (elem < sorted[half])
+      return binary_search(sorted, first, half - 1, elem, index);
+    else if (elem > sorted[half])
+      return binary_search(sorted, half + 1, last, elem, index);
+    else {
+      index = half;
+      return true;
+    }
+  }
+}
+
+bool test_binary_search() {
+  int arr[] = {1, 3, 5, 5, 11, 20};
+  size_t index = -1;
+  bool ret = binary_search(arr, 0, 5, 9, index);
+  ret = index == -1;
+  ret &= binary_search(arr, 0, 5, 20, index);
+  ret &= index == 5;
+  return ret;
+}
+
+bool test_remove_dups_from_array() {
+  bool ret = true;
+  int arr[] = {1, 0, 0, 2, 2, 2, 4, 3, 3, 5, 6, 6};
+  int result[] = {1, 0, 2, 4, 3, 5, 6};
+  
+  int index = remove_dups_from_array(arr, 12);
+  
+  
+  for (int j = 0; j < index; j++) {
+    std::cout << arr[j] << "\n";
+  }
+  
+  
+  ret = std::equal(arr, arr + 7, result);
+  
+  return ret;
+}
+
+
+
+size_t factorial(size_t n) {
+  if (n == 0) return 1;
+  else return n*factorial(n - 1);
+}
+
+bool test_permut() {
+  std::vector<int> syms{1, 2, 3, 4, 5};
+  std::vector<int> sofar;
+  
+  auto s = permutations(syms, sofar);
+  
+  /*
+   for (auto e: s){
+   for (auto i: e)
+   std::cout << i;
+   std::cout << "\n";
+   }
+   */
+  
+  return factorial(syms.size()) == s.size();
+}
+
 int* createOneZeroArray(int len)
 {
   int* arr = new int[len];
@@ -197,51 +247,4 @@ void test_sortbin() {
   
 }
 
-bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index) {
-  if (last < first)
-    return false;
-  else {
-    size_t half = (first + last) / 2;
-    if (elem < sorted[half])
-      return binary_search(sorted, first, half - 1, elem, index);
-    else if (elem > sorted[half])
-      return binary_search(sorted, half + 1, last, elem, index);
-    else {
-      index = half;
-      return true;
-    }
-  }
-}
-
-bool test_binary_search() {
-  int arr[] = {1, 3, 5, 5, 11, 20};
-  size_t index = -1;
-  bool ret = binary_search(arr, 0, 5, 9, index);
-  ret = index == -1;
-  ret &= binary_search(arr, 0, 5, 20, index);
-  ret &= index == 5;
-  return ret;
-}
-
-size_t factorial(size_t n) {
-  if (n == 0) return 1;
-  else return n*factorial(n - 1);
-}
-
-bool test_permut() {
-  std::vector<int> syms{1, 2, 3, 4, 5};
-  std::vector<int> sofar;
-  
-  auto s = permutations(syms, sofar);
-  
-  /*
-   for (auto e: s){
-   for (auto i: e)
-   std::cout << i;
-   std::cout << "\n";
-   }
-   */
-  
-  return factorial(syms.size()) == s.size();
-}
 

@@ -234,6 +234,7 @@ node_t* find_last_n(node_t *head, size_t n) {
   return p2;
 }
 
+#ifdef TEST
 int test_find_last_n() {
   node_t *head = NULL;
   add_node(&head, 1);
@@ -246,3 +247,4 @@ int test_find_last_n() {
   return n->val == 1;
   
 }
+#endif

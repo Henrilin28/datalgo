@@ -37,24 +37,10 @@ bool str_in_str(const char *str1, const char *str2) {
   
 }
 
-bool test_string_in_string() {
-  const char *s1 = "iyed";
-  const char *s2 = "bennour iyed";
-  
-  return str_in_str(s1, s2);
-}
-
-
 void reverse_string(std::string& s) {
   for (int i = 0; i < s.length() / 2; i++) {
     std::swap(s[i], s[s.length() - 1 - i]);
   }
-}
-
-bool test_revers_string() {
-  std::string s("bennour");
-  reverse_string(s);
-  return s == std::string("ruonneb");
 }
 
 
@@ -82,6 +68,20 @@ char find_first_non_repeating_char(const std::string& s) {
   
   return c;
 }
+
+bool test_string_in_string() {
+  const char *s1 = "iyed";
+  const char *s2 = "bennour iyed";
+  
+  return str_in_str(s1, s2);
+}
+
+bool test_revers_string() {
+  std::string s("bennour");
+  reverse_string(s);
+  return s == std::string("ruonneb");
+}
+
 
 bool test_find_first_non_repeating_char() {
   std::string s("dcbaa");

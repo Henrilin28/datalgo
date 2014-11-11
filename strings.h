@@ -13,12 +13,11 @@
 #include <string>
 
 bool str_in_str(const char *str1, const char *str2);
-bool test_string_in_string();
-
 void reverse_string(std::string& s);
-bool test_revers_string();
-
 char find_first_non_repeating_char(const std::string& s);
+
 bool test_find_first_non_repeating_char();
+bool test_string_in_string();
+bool test_revers_string();
 
 #endif /* defined(__interview__strings__) */
