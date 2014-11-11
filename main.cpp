@@ -278,100 +278,7 @@ unsigned int set_bits(unsigned x, unsigned bits) {
   return x | bits;
 }
 
-template <class T>
-std::set<std::vector<T>> permutations(const std::vector<T>& syms, const std::vector<T>& sofar) {
-  
-  std::set<std::vector<T>> perms;
-  
-  if (syms.size() == 0) {
-    perms.insert(sofar);
-  }
-  else {
-    
-    for (int i = 0; i < syms.size(); i++) {
-      
-      std::vector<T> v;
-      /*
-       for (auto x: syms) {
-       if (x != syms[i])
-       v.push_back(x);
-       }
-       */
-      for(int j = 0; j < syms.size(); j++) {
-        if (j != i) {
-          v.push_back(syms[j]);
-        }
-      }
-      
-      std::vector<T> prefix;
-      for (auto x: sofar ) {
-        prefix.push_back(x);
-      }
-      prefix.push_back(syms[i]);
-      
-      auto sub = permutations(v, prefix);
-      
-      for (auto e: sub) {
-        perms.insert(e);
-      }
-    }
-  }
-  return perms;
-}
 
-std::set<std::vector<int>> permut(const std::vector<int>& syms, const std::vector<int>& sofar) {
-  
-  std::set<std::vector<int>> perms;
-  
-  if (syms.size() == 0) {
-    perms.insert(sofar);
-  }
-  
-  for (int i = 0; i < syms.size(); i++) {
-    
-    std::vector<int> v;
-    for(int j = 0; j < syms.size(); j++) {
-      if (j != i) {
-        v.push_back(syms[j]);
-      }
-    }
-    
-    /*
-    for (auto x: syms) {
-      if (x != syms[i])
-        v.push_back(x);
-    }
-    */
-    
-    std::vector<int> prefix;
-    for (auto x: sofar ) {
-      prefix.push_back(x);
-    }
-    
-    
-    prefix.push_back(syms[i]);
-    
-    auto sub = permut(v, prefix);
-  
-    for (auto e: sub) {
-      perms.insert(e);
-    }
-  }
-  return perms;
-}
-
-void test_permut() {
-  std::vector<char> syms{'h', 'e', 'l', 'l', 'o'};
-  std::vector<char> sofar;
-  
-  auto s = permutations(syms, sofar);
-  
-  for (auto e: s){
-    for (auto i: e)
-      std::cout << i;
-    std::cout << "\n";
-  }
-}
 
 void swap (char *x, char *y)
 {
@@ -556,8 +463,6 @@ void test_lrucache() {
   std::cout << lru_cache.get("bennour") << "\n";
 }
 
-//log(n)<n<nlog(n)<n2<exp<n!
-
 bool is_palindrome(const char *s, size_t len) {
   
   for (int i = 0; i < len/2; i++) {
@@ -635,23 +540,6 @@ void test_WebHistory() {
 }
 
 
-bool test_remove_dups_from_array() {
-  bool ret = true;
-  int arr[] = {1, 0, 0, 2, 2, 2, 4, 3, 3, 5, 6, 6};
-  int result[] = {1, 0, 2, 4, 3, 5, 6};
-  
-  int index = remove_dups_from_array(arr, 12);
-  
-  
-  for (int j = 0; j < index; j++) {
-    std::cout << arr[j] << "\n";
-  }
-  
-  
-  ret = std::equal(arr, arr + 7, result);
-  
-  return ret;
-}
 
 bool test_add_numbers_as_list() {
   bool ret = true;
@@ -779,7 +667,6 @@ int main(int argc, const char * argv[]) {
     std::cout << i << "\n";
   }
    */
-  //test_permut();
   //test_polynomial();
   //test_lrucache();
   //test_quick_sort();
@@ -794,6 +681,9 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_string_in_string)
   RUN_TEST(test_revers_string)
   RUN_TEST(test_find_first_non_repeating_char)
+  RUN_TEST(test_binary_search)
+  RUN_TEST(test_permut)
+
   return 0;
   
 }
