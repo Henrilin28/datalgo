@@ -17,7 +17,6 @@ extern "C" {
   int part(int arr[], int start, int end);
   void quick_sort(int arr[], int begin, int end);
   int* merge(int arr1[], unsigned int size1, int arr2[], unsigned int size2);
-  int uniques(int arr[], int len);
   
 #ifdef __cplusplus
 }
