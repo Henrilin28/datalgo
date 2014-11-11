@@ -9,6 +9,7 @@
 #include "randomexamples.h"
 #include <math.h>
 #include <unordered_map>
+#include <iostream>
 
 
 /*
@@ -106,28 +107,75 @@ int from_list_to_number2(node_t *head, unsigned int exp, int sofar) {
   }
 }
 
-bool str_in_str(const char *str1, const char *str2) {
+/*
+ sort an array of 0s and 1s in linear time
+ */
+void sortbin(int arr[], int len) {
+  int last_zero = 0;
   
-  const char *p1 = str1;
-  const char *p2 = str2;
-  
-  while (*p2 != '\0') {
-    if (*p2 == *p1) {
-      p2++;
-      p1++;
-      while (*p1 == *p2 && *p2 != '\0' && *p1 != '\0') {
-        p1++;
-        p2++;
-      }
-      if (*p1 == '\0') return true;
-    }
-    else {
-      p2++;
-    }
-    p1 = str1;
+  while (arr[last_zero] == 0) {
+    last_zero++;
   }
   
-  return false;
+  for (int i = last_zero; i < len - 1; i++) {
+    if (arr[i] > arr[i + 1]) {
+      std::swap(arr[i + 1], arr[last_zero++]);
+    }
+  }
+}
+
+/*
+ sort an array of 0s and 1s in linear time
+ another way
+ */
+void sortbin2(int arr[], int len) {
+  
+  for (int i = 0; i < len; i++) {
+    if (arr[i] == 1) arr[i] = 2;
+  }
+  
+  int last_zero = 0;
+  for (int i = 0; i < len; i++) {
+    if (arr[i] < 1) {
+      std::swap(arr[i], arr[last_zero++]);
+    }
+    else arr[i] = 1;
+  }
+}
+
+int* createOneZeroArray(int len)
+{
+  int* arr = new int[len];
+  
+  for(int i = 0; i < len; ++i){
+    arr[i] = rand() % 2;
+  }
+  
+  return arr;
+}
+
+void test_sortbin() {
+  
+  for (int j = 0; j < 5; j++) {
+    int *parr = createOneZeroArray(10);
+    
+    for (int i = 0; i < 10; i++) {
+      std::cout << parr[i] << " ";
+    }
+    std::cout << "\n";
+    
+    sortbin(parr, 10);
+    
+    for (int i = 0; i < 10; i++) {
+      std::cout << parr[i] << " ";
+    }
+    
+    std::cout << "\n";
+    
+    delete [] parr;
+  }
   
 }
+
+
 

@@ -20,7 +20,6 @@
 #include "tree.h"
 #include <map>
 #include "randomexamples.h"
-#include "BinaryOp.h"
 #include "strings.h"
 
 namespace detail {
@@ -600,52 +599,6 @@ bool test_tree() {
 }
 
 
-/*
- sort an array of 0s and 1s in linear time
- */
-void sortbin(int arr[], int len) {
-  int last_zero = 0;
-  
-  while (arr[last_zero] == 0) {
-    last_zero++;
-  }
-  
-  for (int i = 0; i < len - 1; i++) {
-    if (arr[i] > arr[i + 1]) {
-      std::swap(arr[i + 1], arr[last_zero++]);
-    }
-  }
-}
-
-
-/*
- sort an array of 0s and 1s in linear time 
- another way
- */
-void sortbin2(int arr[], int len) {
-  
-  for (int i = 0; i < len; i++) {
-    if (arr[i] == 1) arr[i] = 2;
-  }
-  
-  int last_zero = 0;
-  for (int i = 0; i < len; i++) {
-    if (arr[i] < 1) {
-      std::swap(arr[i], arr[last_zero++]);
-    }
-    else arr[i] = 1;
-  }
-}
-
-void test_sortbin() {
-  int arr[] = {1, 1, 0, 1, 0, 1, 0, 0, 0, 1};
-  sortbin(arr, 10);
-  for (auto i: arr) {
-    std::cout << i << "\n";
-  }
-  
-}
-
 class WebHistory {
 public:
   void add_url(std::string url) {
@@ -717,21 +670,6 @@ bool test_add_numbers_as_list() {
   //traverse_node(new_head, print_node);
   
   return (from_list_to_number2(new_head, 0, 0) == 808);
-}
-
-bool test_binary_expr() {
-  OpAdd<int> opAddInt;
-  BinaryOperator<OpAdd<int>, int> binOpInt;
-  double x = 1;
-  return binOpInt(1, x) == 2.0;
-}
-
-
-bool test_string_in_string() {
-  const char *s1 = "iyed";
-  const char *s2 = "iyes";
-  
-  return str_in_str(s1, s2);
 }
 
 int main(int argc, const char * argv[]) {
@@ -853,7 +791,6 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_reverser_list)
   RUN_TEST(test_remove_dups_from_array)
   RUN_TEST(test_add_numbers_as_list)
-  RUN_TEST(test_binary_expr)
   RUN_TEST(test_string_in_string)
   RUN_TEST(test_revers_string)
   RUN_TEST(test_find_first_non_repeating_char)

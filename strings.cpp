@@ -11,6 +11,40 @@
 #include <unordered_map>
 #include <map>
 
+
+bool str_in_str(const char *str1, const char *str2) {
+  
+  const char *p1 = str1;
+  const char *p2 = str2;
+  
+  while (*p2 != '\0') {
+    if (*p2 == *p1) {
+      p2++;
+      p1++;
+      while (*p1 == *p2 && *p2 != '\0' && *p1 != '\0') {
+        p1++;
+        p2++;
+      }
+      if (*p1 == '\0') return true;
+    }
+    else {
+      p2++;
+    }
+    p1 = str1;
+  }
+  
+  return false;
+  
+}
+
+bool test_string_in_string() {
+  const char *s1 = "iyed";
+  const char *s2 = "bennour iyed";
+  
+  return str_in_str(s1, s2);
+}
+
+
 void reverse_string(std::string& s) {
   for (int i = 0; i < s.length() / 2; i++) {
     std::swap(s[i], s[s.length() - 1 - i]);
@@ -20,7 +54,6 @@ void reverse_string(std::string& s) {
 bool test_revers_string() {
   std::string s("bennour");
   reverse_string(s);
-  //std::cout << s << "\n";
   return s == std::string("ruonneb");
 }
 

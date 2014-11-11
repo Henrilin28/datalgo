@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <string>
 
+bool str_in_str(const char *str1, const char *str2);
+bool test_string_in_string();
+
 void reverse_string(std::string& s);
 bool test_revers_string();
 
