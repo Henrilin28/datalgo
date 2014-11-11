@@ -683,6 +683,7 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_find_first_non_repeating_char)
   RUN_TEST(test_binary_search)
   RUN_TEST(test_permut)
+  RUN_TEST(test_find_last_n)
 
   return 0;
   

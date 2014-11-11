@@ -38,7 +38,8 @@ extern "C" {
   void traverse_node(node_t *head, func_ptr func);
   void free_list(node_t **head);
   void reverse_list(node_t **phead);
-
+  node_t* find_last_n(node_t *head, size_t n);
+  int test_find_last_n();
   
 #ifdef __cplusplus
 }
