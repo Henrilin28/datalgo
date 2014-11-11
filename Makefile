@@ -9,8 +9,10 @@ HEADERS = $(wildcard *.h) $(wildcard *.hpp)
 CFLAGS = -I/usr/local/include
 
 
-interview: main.o sort.o lists.o
-	g++ -g $(LD_FLAGS) $(BOOST_LFLAGS)  -o interview main.o sort.o lists.o
+interview: main.o sort.o lists.o randomexamples.o strings.o
+	g++ -g $(LD_FLAGS) $(BOOST_LFLAGS)  -o interview main.o sort.o lists.o \
+		randomexamples.o strings.o
+
 
 
 %.o: %.cpp

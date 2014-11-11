@@ -106,4 +106,28 @@ int from_list_to_number2(node_t *head, unsigned int exp, int sofar) {
   }
 }
 
+bool str_in_str(const char *str1, const char *str2) {
+  
+  const char *p1 = str1;
+  const char *p2 = str2;
+  
+  while (*p2 != '\0') {
+    if (*p2 == *p1) {
+      p2++;
+      p1++;
+      while (*p1 == *p2 && *p2 != '\0' && *p1 != '\0') {
+        p1++;
+        p2++;
+      }
+      if (*p1 == '\0') return true;
+    }
+    else {
+      p2++;
+    }
+    p1 = str1;
+  }
+  
+  return false;
+  
+}
 

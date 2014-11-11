@@ -20,6 +20,8 @@
 #include "tree.h"
 #include <map>
 #include "randomexamples.h"
+#include "BinaryOp.h"
+#include "strings.h"
 
 namespace detail {
   template <int N> struct BIT {
@@ -717,6 +719,21 @@ bool test_add_numbers_as_list() {
   return (from_list_to_number2(new_head, 0, 0) == 808);
 }
 
+bool test_binary_expr() {
+  OpAdd<int> opAddInt;
+  BinaryOperator<OpAdd<int>, int> binOpInt;
+  double x = 1;
+  return binOpInt(1, x) == 2.0;
+}
+
+
+bool test_string_in_string() {
+  const char *s1 = "iyed";
+  const char *s2 = "iyes";
+  
+  return str_in_str(s1, s2);
+}
+
 int main(int argc, const char * argv[]) {
   
   int arr[] = {1, 10, 6, 9};
@@ -836,6 +853,10 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_reverser_list)
   RUN_TEST(test_remove_dups_from_array)
   RUN_TEST(test_add_numbers_as_list)
+  RUN_TEST(test_binary_expr)
+  RUN_TEST(test_string_in_string)
+  RUN_TEST(test_revers_string)
+  RUN_TEST(test_find_first_non_repeating_char)
   return 0;
   
 }
