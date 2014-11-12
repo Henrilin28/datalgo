@@ -17,7 +17,6 @@
 #include "lists.h"
 
 int remove_dups_from_array(int arr[], unsigned int len);
-bool test_remove_dups_from_array();
 node_t *add_numbers_as_list(node_t *head1, node_t *head2);
 node_t *add_numbers_as_list_rec(node_t *head1, node_t *head2, unsigned int carry);
 int from_list_to_number(node_t *head, unsigned int exp);
@@ -26,7 +25,6 @@ void sortbin(int arr[], int len);
 void test_sortbin();
 void special_sort(int arr[], size_t len);
 bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index);
-bool test_binary_search();
 
 template <class T>
 std::set<std::vector<T>> permutations(const std::vector<T>& syms, const std::vector<T>& sofar) {
@@ -69,6 +67,13 @@ std::set<std::vector<T>> permutations(const std::vector<T>& syms, const std::vec
   return perms;
 }
 
+void dutch_flag(int arr[], int len, int low, int high);
+
 bool test_permut();
+bool test_remove_dups_from_array();
+bool test_binary_search();
+bool test_french_flag();
+
+
 
 #endif /* defined(__interview__randomexamples__) */

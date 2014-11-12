@@ -161,6 +161,35 @@ bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& in
   }
 }
 
+void french_flag(int arr[], int len, int low, int high) {
+  
+  int first = 0;
+  int last = len - 1;
+  int i = 0;
+  
+  
+  while (i < last) {
+    
+    if (arr[i] == low) {
+      std::swap(arr[i], arr[first++]);
+      i++;
+    } else if (arr[i] == high) {
+      std::swap(arr[i], arr[last--]);
+    } else {
+      i++;
+    }
+  }
+  
+}
+
+bool test_french_flag() {
+  int arr[] = {1, 2, 1, 3, 2, 3, 1};
+  // 1, 1, 1, 2, 2, 3, 3
+  french_flag(arr, 7, 1, 3);
+  for (auto i: arr) std::cout << i << "\n";
+  return true;
+}
+
 bool test_binary_search() {
   int arr[] = {1, 3, 5, 5, 11, 20};
   size_t index = -1;

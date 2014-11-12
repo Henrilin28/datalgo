@@ -684,6 +684,7 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_binary_search)
   RUN_TEST(test_permut)
   RUN_TEST(test_find_last_n)
+  RUN_TEST(test_french_flag)
 
   return 0;
   
