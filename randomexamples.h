@@ -66,8 +66,7 @@ std::set<std::vector<T>> permutations(const std::vector<T>& syms, const std::vec
   }
   return perms;
 }
-
-void dutch_flag(int arr[], int len, int low, int high);
+void french_flag(int arr[], int len, int low, int high);
 
 bool test_permut();
 bool test_remove_dups_from_array();
