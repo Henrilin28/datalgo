@@ -132,17 +132,48 @@ void sortbin(int arr[], int len) {
  */
 void sortbin2(int arr[], int len) {
   
-  for (int i = 0; i < len; i++) {
-    if (arr[i] == 1) arr[i] = 2;
+  int i = 0;
+  int j = len - 1;
+  
+  while (arr[i] == 0) {
+    i++;
+  }
+  while (arr[j] == 1) {
+    j--;
   }
   
-  int last_zero = 0;
-  for (int i = 0; i < len; i++) {
-    if (arr[i] < 1) {
-      std::swap(arr[i], arr[last_zero++]);
+  while (i < j) {
+    if (arr[i] > arr[j]) {
+      std::swap(arr[i], arr[j]);
     }
-    else arr[i] = 1;
+    j--;
+    i++;
   }
+}
+
+bool test_sortbin2() {
+  int arr1[] = {0, 0, 0, 0, 0, 1, 1, 1};
+  int arr2[] = {0, 0, 0, 0, 1, 1, 0, 1};
+  int arr3[] = {0, 1, 0, 1, 0, 1, 0, 1};
+  
+  sortbin2(arr1, 8);
+  for (auto i: arr1) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
+  
+  sortbin2(arr2, 8);
+  for (auto i: arr2) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
+  
+  sortbin2(arr3, 8);
+  for (auto i: arr3) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
+  return true;
 }
 
 bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index) {

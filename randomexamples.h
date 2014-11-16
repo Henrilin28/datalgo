@@ -22,6 +22,7 @@ node_t *add_numbers_as_list_rec(node_t *head1, node_t *head2, unsigned int carry
 int from_list_to_number(node_t *head, unsigned int exp);
 int from_list_to_number2(node_t *head, unsigned int exp, int sofar);
 void sortbin(int arr[], int len);
+void sortbin2(int arr[], int len);
 void test_sortbin();
 void special_sort(int arr[], size_t len);
 bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index);
@@ -72,6 +73,7 @@ bool test_permut();
 bool test_remove_dups_from_array();
 bool test_binary_search();
 bool test_french_flag();
+bool test_sortbin2();
 
 
 
