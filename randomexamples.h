@@ -74,6 +74,7 @@ bool test_remove_dups_from_array();
 bool test_binary_search();
 bool test_french_flag();
 bool test_sortbin2();
+bool test_sortbin3();
 
 
 

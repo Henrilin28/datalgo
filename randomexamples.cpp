@@ -132,6 +132,7 @@ void sortbin(int arr[], int len) {
  */
 void sortbin2(int arr[], int len) {
   
+  
   int i = 0;
   int j = len - 1;
   
@@ -149,12 +150,28 @@ void sortbin2(int arr[], int len) {
     j--;
     i++;
   }
+  
+  
+  
+}
+
+void sortbin3(int arr[], int len) {
+  int last_zero = 0;
+  int i = 0;
+  while (i < len) {
+    if (arr[i] == 0) {
+      std::swap(arr[i++], arr[last_zero++]);
+    }
+    else
+      i++;
+  }
 }
 
 bool test_sortbin2() {
-  int arr1[] = {0, 0, 0, 0, 0, 1, 1, 1};
-  int arr2[] = {0, 0, 0, 0, 1, 1, 0, 1};
+  int arr1[] = {1, 1, 0, 0, 0, 1, 1, 1};
+  int arr2[] = {0, 0, 0, 0, 1, 0, 0, 1};
   int arr3[] = {0, 1, 0, 1, 0, 1, 0, 1};
+  int arr4[] = {0, 0, 0, 0, 1, 1, 0, 1};
   
   sortbin2(arr1, 8);
   for (auto i: arr1) {
@@ -173,8 +190,47 @@ bool test_sortbin2() {
     std::cout << i << " ";
   }
   std::cout << "\n";
+  
+  sortbin2(arr4, 8);
+  for (auto i: arr4) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
   return true;
 }
+
+bool test_sortbin3() {
+  int arr1[] = {1, 1, 0, 0, 0, 1, 1, 1};
+  int arr2[] = {0, 0, 0, 0, 1, 0, 0, 1};
+  int arr3[] = {0, 1, 0, 1, 0, 1, 0, 1};
+  int arr4[] = {0, 0, 0, 0, 1, 1, 0, 1};
+  
+  sortbin3(arr1, 8);
+  for (auto i: arr1) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
+  
+  sortbin3(arr2, 8);
+  for (auto i: arr2) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
+  
+  sortbin3(arr3, 8);
+  for (auto i: arr3) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
+  
+  sortbin3(arr4, 8);
+  for (auto i: arr4) {
+    std::cout << i << " ";
+  }
+  std::cout << "\n";
+  return true;
+}
+
 
 bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index) {
   if (last < first)
@@ -214,9 +270,9 @@ void french_flag(int arr[], int len, int low, int high) {
 }
 
 bool test_french_flag() {
-  int arr[] = {1, 2, 1, 3, 2, 3, 1};
+  int arr[] = {1, 1, 2, 1, 2, 3, 3, 1};
   // 1, 1, 1, 2, 2, 3, 3
-  french_flag(arr, 7, 1, 3);
+  french_flag(arr, 8, 1, 3);
   for (auto i: arr) std::cout << i << "\n";
   return true;
 }

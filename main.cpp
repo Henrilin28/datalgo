@@ -686,6 +686,7 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_find_last_n)
   RUN_TEST(test_french_flag)
   RUN_TEST(test_sortbin2);
+  RUN_TEST(test_sortbin3);
 
   return 0;
   
