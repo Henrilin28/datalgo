@@ -21,6 +21,8 @@
 #include <map>
 #include "randomexamples.h"
 #include "strings.h"
+#include "tree_tests.h"
+#include "expr_tests.h"
 
 namespace detail {
   template <int N> struct BIT {
@@ -196,7 +198,7 @@ bool test_reverser_list() {
   
   reverse_list(&head);
   
-  //traverse_node(head, print_node);
+  traverse_node(head, print_node);
   
   return list_len_rec(head) == 6 && head->val == 6;
 }
@@ -491,19 +493,6 @@ int fibo(unsigned int n) {
     return fibo(n - 1) + fibo(n - 2);
 }
 
-bool test_tree() {
-  Tree<int> tree;
-  tree.add(1);
-  tree.add(0);
-  tree.add(2);
-  //tree.in_order();
-  //std::cout << tree.size() << "\n";
-  tree.delete_nodes();
-  //std::cout << tree.size() << "\n";
-  return tree.size() == 0;
-}
-
-
 class WebHistory {
 public:
   void add_url(std::string url) {
@@ -558,6 +547,161 @@ bool test_add_numbers_as_list() {
   //traverse_node(new_head, print_node);
   
   return (from_list_to_number2(new_head, 0, 0) == 808);
+}
+
+
+struct res {
+  int i;
+  int j;
+  int sum;
+};
+
+
+res max_sum_subarray(int arr[], int len) {
+  res r;
+  r.i = 0;
+  r.j = 0;
+  r.sum = std::numeric_limits<int>::min();
+  
+  res curr_sum {0, 0, r.sum};
+  
+  for (int k = 0; k < len; k++) {
+    
+    if (curr_sum.sum <= 0) {
+      curr_sum.i = k;
+      curr_sum.j = k;
+      curr_sum.sum = 0;
+    }
+    
+    curr_sum.sum += arr[k];
+    curr_sum.j = k;
+    
+    if (curr_sum.sum > r.sum) {
+      r.sum = curr_sum.sum;
+      r.j = curr_sum.j;
+      r.i = curr_sum.i;
+    }
+  }
+  return r;
+}
+
+bool test_max_sum_subarray() {
+  int arr[] = {-1, -3, 4, -1, -2, 1, 5, -3, -4, 1};
+  res r = max_sum_subarray(arr, 10);
+  std::cout << r.sum << ", " << r.i << " " << r.j << "\n";
+  return true;//r.sum == 1 && r.i == 9 && r.j == 9;
+  
+}
+
+int longest_increasing_seq(int arr[], int len) {
+  
+  int seq_len = 0;
+  int k = 0, p = 0;
+  
+  int curr_seq_len = 0;
+  int curr_k = 0, curr_p = 0;
+  
+  int previous = std::numeric_limits<int>::min();
+  
+  for (int i = 0; i < len; i++) {
+    
+    if (curr_seq_len == 0) {
+      curr_k = i;
+      curr_p = i;
+    }
+    
+    if (arr[i] > previous) {
+     
+      previous = arr[i];
+      curr_seq_len++;
+      curr_p = i;
+      
+      if (curr_seq_len > seq_len) {
+        seq_len = curr_seq_len;
+        k = curr_k;
+        p = curr_p;
+      }
+    }
+    else {
+      curr_seq_len = 0;
+    }
+      
+  }
+  std::cout << seq_len << ", " << k << " " << p << "\n";
+  return seq_len;
+}
+
+bool test_longest_inc_seq() {
+  int arr[] = {1, 2, 3, 0, -1, 4, 5, 6, 7};
+  int len = longest_increasing_seq(arr, 9);
+  return len == 4;
+}
+
+
+void array_sub_arrays(std::vector<int> vec) {
+  for (int i = 1; i < pow(2, vec.size()); i++) {
+    std::vector<int> sub_array;
+    for (int j = 0; j <= vec.size(); j++) {
+      if (i & (1 << j))
+        sub_array.push_back(vec[j]);
+        
+    }
+    for (auto e: sub_array)
+      std::cout << e << " ";
+    std::cout << "\n";
+  }
+}
+
+
+std::list<std::vector<int>> _array_sub_arrays(std::vector<int> vec) {
+  
+  /*
+  std::size_t offset = 0;
+  
+  while (offset < vec.size()) {
+    std::vector<int> work_vec(vec.size() - offset);
+    std::copy(vec.begin() + offset, vec.end(), work_vec.begin());
+    work_vec.shrink_to_fit();
+
+    for (int i = 0; i < work_vec.size(); i++) {
+      int num = pow(2, i) - 1;
+      std::vector<int> sub_array;
+      for (int j = 0; j <= work_vec.size(); j++) {
+        if (num & (1 << j))
+          sub_array.push_back(work_vec[j]);
+        
+      }
+      for (auto e: sub_array)
+        std::cout << e << " ";
+      std::cout << "\n";
+    }
+    offset++;
+  }
+   */
+  
+  std::list<std::vector<int>> l;
+  
+  for (int i = 0; i < vec.size(); i++) {
+    for (int j = i + 1; j <= vec.size(); j++) {
+      std::vector<int> curr(vec.begin() + i, vec.begin() + j);
+      l.push_back(curr);
+    }
+  }
+  return l;
+}
+
+
+bool test_sub_arr() {
+  std::vector<int> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
+  auto l = _array_sub_arrays(v);
+  std::cout << l.size() << "\n";
+  for (auto e: l) {
+    for (auto i: e) {
+      std::cout << i << " ";
+    }
+    std::cout << "\n";
+  }
+  return true;
 }
 
 int main(int argc, const char * argv[]) {
@@ -687,6 +831,22 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_french_flag)
   RUN_TEST(test_sortbin2);
   RUN_TEST(test_sortbin3);
+  RUN_TEST(test_find_min_plt);
+  RUN_TEST(test_check_paren);
+  RUN_TEST(test_tree_find_node)
+  RUN_TEST(test_tree_route_to_node)
+  RUN_TEST(test_expr)
+  //RUN_TEST(test_find_solution)
+  RUN_TEST(test_node_per_level)
+  //RUN_TEST(test_set_combinations)
+  RUN_TEST(test_is_bst)
+  RUN_TEST(test_is_sorted)
+  RUN_TEST(test_tree_length)
+  RUN_TEST(test_tree_balanced)
+  RUN_TEST(test_free_list)
+  RUN_TEST(test_max_sum_subarray)
+  RUN_TEST(test_longest_inc_seq)
+  RUN_TEST(test_sub_arr)
 
   return 0;
   

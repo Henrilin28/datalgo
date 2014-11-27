@@ -11,6 +11,8 @@
 #include <unordered_map>
 #include <iostream>
 #include <vector>
+#include <limits>
+#include <stack>
 
 
 /*
@@ -150,9 +152,6 @@ void sortbin2(int arr[], int len) {
     j--;
     i++;
   }
-  
-  
-  
 }
 
 void sortbin3(int arr[], int len) {
@@ -237,6 +236,7 @@ bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& in
     return false;
   else {
     size_t half = (first + last) / 2;
+    
     if (elem < sorted[half])
       return binary_search(sorted, first, half - 1, elem, index);
     else if (elem > sorted[half])
@@ -363,4 +363,125 @@ void test_sortbin() {
   
 }
 
+int find_min_plt(int arr[], int len, int dep[], int len2) {
+  int A = 1;
+  int D = 0;
+  int P = std::numeric_limits<int>::min();
+  
+  for (int i = 1; i < len; i++) {
+    if (arr[i] > dep[i - 1]) {
+      D++;
+    }
+    int tmp = A - D;
+    if (tmp > P) P = tmp;
+    A++;
+  }
+  return P;
+}
 
+int find_min_plt2(int arr[], int dep[], int len) {
+  int max_plt = 0;
+  std::stack<int> stack;
+  int current = 1;
+  int i = 1;
+  int j = 0;
+  
+  stack.push(arr[0]);
+  
+  while (i < len && j < len) {
+    if (dep[j] < arr[i]) {
+      stack.pop();
+      current--;
+      j++;
+    }
+    else {
+      stack.push(arr[i]);
+      current++;
+      i++;
+      if (stack.size() > max_plt)
+        max_plt = stack.size();
+    }
+    
+  }
+  return max_plt;
+}
+
+
+bool test_find_min_plt() {
+  int arr[] = {900, 940, 950, 1100, 1500, 1800};
+  int dep[] = {910, 1200, 1120, 1130, 1900, 2000};
+  
+  int p = find_min_plt(arr, 6, dep, 6);
+  
+  std::cout << find_min_plt2(arr, dep, 6) << "\n";
+  
+  return true;
+}
+
+bool check_paren(const std::string expr) {
+  bool res = true;
+  std::stack<char> stack;
+  stack.push(expr[0]);
+  for (int i = 1; i < expr.size(); i++) {
+    if (!stack.empty() && stack.top() == '(' && expr[i] == ')') {
+      stack.pop();
+    }
+    else if (expr[i] == '(' || expr[i] == ')') {
+      stack.push(expr[i]);
+    }
+  }
+  res = stack.size() == 0;
+  return res;
+}
+
+bool test_check_paren() {
+  return check_paren("(((a + b))(c + d))()");
+}
+
+bool test_set_combinations() {
+  std::vector<int> set {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24};
+  std::vector<std::vector<int>> initial{{}};
+  
+  auto combinations = set_combinations_iter(set);
+  
+  return combinations.size() == pow(2, 23);
+}
+
+void _sortbin(int arr[], int len) {
+  int last_zero = 0;
+  int i = 0;
+  while (i < len) {
+    if (arr[i] == 0) {
+      std::swap(arr[i++], arr[last_zero++]);
+    }
+    else {
+      i++;
+    }
+  }
+}
+
+int x = 0;
+
+bool is_sorted(int arr[], int start, int end) {
+  
+  if (start < end) {
+    int half = (start + end) / 2;
+    x++;
+    if (arr[half] > arr[half + 1]) {
+      
+      return false;
+    }
+    else
+      return (is_sorted(arr, start, half) && is_sorted(arr, half + 1, end));
+    
+  }
+  return true;
+}
+
+bool test_is_sorted() {
+  bool ret = false;
+  int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 12};
+  ret = is_sorted(arr, 0, 11);
+  
+  return ret == false;
+}

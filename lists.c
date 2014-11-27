@@ -74,6 +74,8 @@ node_t* find_node(node_t *head, int val) {
 void free_list(node_t **head) {
   
   node_t *p = *head;
+  
+  /*
   if (p == NULL)
     return;
   
@@ -82,6 +84,8 @@ void free_list(node_t **head) {
     free(p->next);
     p->next = tmp;
   }
+  free(p);
+  */
   
   while (p != NULL) {
     node_t *tmp = p;
@@ -89,9 +93,24 @@ void free_list(node_t **head) {
     free(tmp);
   }
   
-  free(p);
   *head = NULL;
   
+}
+
+int test_free_list() {
+  node_t *head = NULL;
+  add_node(&head, 1);
+  add_node(&head, 2);
+  add_node(&head, 3);
+  add_node(&head, 4);
+  add_node(&head, 5);
+  add_node(&head, 6);
+  
+  free_list(&head);
+  if (head == NULL && list_len(head) == 0)
+    return 1;
+  else
+    return 0;
 }
 
 node_t* remove_list_dups(node_t **head) {
@@ -139,7 +158,7 @@ unsigned int list_len_rec(node_t *head) {
 void remove_node(node_t **head, int val) {
   node_t *p1 = *head;
   
-  while (p1 && p1->val == val) {
+  while (p1 != NULL && p1->val == val) {
     node_t *tmp = p1;
     *head = p1->next;
     p1 = p1->next;

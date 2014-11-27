@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <limits.h>
 #include <math.h>
+#include <strings.h>
 
 
 #include "sort.h"

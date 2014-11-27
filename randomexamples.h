@@ -12,6 +12,10 @@
 #include <stdio.h>
 #include <vector>
 #include <set>
+#include <queue>
+#include <algorithm>
+#include <iostream>
+#include <stack>
 
 
 #include "lists.h"
@@ -23,6 +27,7 @@ int from_list_to_number(node_t *head, unsigned int exp);
 int from_list_to_number2(node_t *head, unsigned int exp, int sofar);
 void sortbin(int arr[], int len);
 void sortbin2(int arr[], int len);
+void sortbin3(int arr[], int len);
 void test_sortbin();
 void special_sort(int arr[], size_t len);
 bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index);
@@ -67,7 +72,114 @@ std::set<std::vector<T>> permutations(const std::vector<T>& syms, const std::vec
   }
   return perms;
 }
+
+
+template <typename T> std::vector<std::vector<T>> set_combinations(std::vector<T> set) {
+  std::vector<std::vector<T>> ret;
+  if (set.size() == 0) {
+    ret.push_back({});
+  }
+  else {
+    std::vector<T> sub_set(set.size() - 1);
+    std::copy(++set.begin(), set.end(), sub_set.begin());
+    
+    
+    auto sub_ret = combi(sub_set);
+    
+    for (auto& e: sub_ret)
+    {
+      ret.push_back(e);
+      e.emplace(e.begin(), set[0]);
+      ret.push_back(e);
+    }
+  }
+  return ret;
+}
+
+
+template <typename T> void
+set_combinations_tail_rec(const std::vector<T>& set,
+                    std::vector<std::vector<T>>& combinations) {
+  
+  if (set.size() == 0) {
+
+    return;
+  }
+  else {
+    std::vector<T> sub_set(set.size() - 1);
+    std::copy(++set.begin(), set.end(), sub_set.begin());
+    
+        std::vector<std::vector<T>> new_combinations(combinations.begin(), combinations.end());
+    for (auto& e: combinations)
+    {
+      std::vector<T> v(e.begin(), e.end());
+      v.push_back(set[0]);
+      new_combinations.push_back(v);
+    }
+    std::swap(combinations, new_combinations);
+    return set_combinations(sub_set, combinations);
+    
+
+  }
+}
+
+template <typename T> std::vector<std::vector<T>>
+set_combinations_tail_rec2(const std::vector<T>& set,
+                          const std::vector<std::vector<T>>& combinations) {
+  
+  if (set.size() == 0) {
+    return combinations;
+  }
+  else {
+    std::vector<T> sub_set(set.size() - 1);
+    std::copy(++set.begin(), set.end(), sub_set.begin());
+    
+    std::vector<std::vector<T>> new_combinations(combinations.begin(), combinations.end());
+    for (auto& e: combinations)
+    {
+      std::vector<T> v(e.begin(), e.end());
+      v.push_back(set[0]);
+      new_combinations.push_back(v);
+    }
+    
+    return set_combinations_tail_rec2(sub_set, new_combinations);
+    
+  }
+}
+
+template <typename T> std::vector<std::vector<T>>
+set_combinations_iter(const std::vector<T>& set) {
+  
+  std::stack<std::vector<T>> sets;
+  std::stack<std::vector<std::vector<T>>> combinations;
+  sets.push(set);
+  combinations.push({{}});
+  
+  while (!sets.top().empty()) {
+    auto v = sets.top();
+    std::vector<T> sub_set(v.size() - 1);
+    std::copy(++v.begin(), v.end(), sub_set.begin());
+    auto c = combinations.top();
+    std::vector<std::vector<T>> nc(c.begin(), c.end());
+    for (auto& e: c) {
+      std::vector<T> tmp(e.begin(), e.end());
+      tmp.push_back(v[0]);
+      nc.push_back(tmp);
+    }
+    sets.push(sub_set);
+    combinations.push(nc);
+  }
+  
+  return combinations.top();
+}
+
+
+bool test_set_combinations();
+
+
 void french_flag(int arr[], int len, int low, int high);
+size_t find_min_plt(size_t arr[], size_t len, size_t dep[], int len2);
+bool test_find_min_plt();
 
 bool test_permut();
 bool test_remove_dups_from_array();
@@ -76,6 +188,9 @@ bool test_french_flag();
 bool test_sortbin2();
 bool test_sortbin3();
 
-
+bool check_paren(const std::string expr);
+bool test_check_paren();
+bool is_sorted(int arr[], int start, int end);
+bool test_is_sorted();
 
 #endif /* defined(__interview__randomexamples__) */

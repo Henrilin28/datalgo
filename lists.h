@@ -40,6 +40,7 @@ extern "C" {
   void reverse_list(node_t **phead);
   node_t* find_last_n(node_t *head, size_t n);
   int test_find_last_n();
+  int test_free_list();
   
 #ifdef __cplusplus
 }

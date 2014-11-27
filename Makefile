@@ -11,9 +11,10 @@ ifeq ($(TEST), 1)
 CFLAGS += -DTEST
 endif
 
-interview: main.o sort.o lists.o randomexamples.o strings.o
+interview: main.o sort.o lists.o randomexamples.o strings.o expr.o expr_tests.o \
+	tree_tests.o
 	g++ -g $(LD_FLAGS) $(BOOST_LFLAGS)  -o interview main.o sort.o lists.o \
-		randomexamples.o strings.o
+		randomexamples.o strings.o tree_tests.o expr_tests.o expr.o
 
 
 
