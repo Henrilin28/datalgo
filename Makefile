@@ -1,5 +1,5 @@
 
-CXX_FLAGS = -std=c++11 -Wall
+CXX_FLAGS = -std=c++11 -stdlib=libc++ -Wall
 HEADERS = $(wildcard *.h) $(wildcard *.hpp)
 
 ifeq ($(TEST), 1)  
