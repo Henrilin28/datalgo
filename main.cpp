@@ -7,7 +7,6 @@
 //
 
 #include <iostream>
-#include <boost/asio.hpp>
 #include <vector>
 #include <assert.h>
 #include "sort.h"
@@ -532,7 +531,6 @@ void test_WebHistory() {
 
 
 bool test_add_numbers_as_list() {
-  bool ret = true;
   node_t *head1 = NULL;
   add_node(&head1, 3);
   add_node(&head1, 1);
@@ -591,32 +589,23 @@ bool test_max_sum_subarray() {
   res r = max_sum_subarray(arr, 10);
   std::cout << r.sum << ", " << r.i << " " << r.j << "\n";
   return true;//r.sum == 1 && r.i == 9 && r.j == 9;
-  
 }
 
 int longest_increasing_seq(int arr[], int len) {
-  
   int seq_len = 0;
   int k = 0, p = 0;
-  
   int curr_seq_len = 0;
   int curr_k = 0, curr_p = 0;
-  
   int previous = std::numeric_limits<int>::min();
-  
   for (int i = 0; i < len; i++) {
-    
     if (curr_seq_len == 0) {
       curr_k = i;
       curr_p = i;
     }
-    
     if (arr[i] > previous) {
-     
       previous = arr[i];
       curr_seq_len++;
       curr_p = i;
-      
       if (curr_seq_len > seq_len) {
         seq_len = curr_seq_len;
         k = curr_k;
@@ -626,7 +615,6 @@ int longest_increasing_seq(int arr[], int len) {
     else {
       curr_seq_len = 0;
     }
-      
   }
   std::cout << seq_len << ", " << k << " " << p << "\n";
   return seq_len;
@@ -645,7 +633,6 @@ void array_sub_arrays(std::vector<int> vec) {
     for (int j = 0; j <= vec.size(); j++) {
       if (i & (1 << j))
         sub_array.push_back(vec[j]);
-        
     }
     for (auto e: sub_array)
       std::cout << e << " ";
@@ -682,115 +669,12 @@ bool test_sub_arr() {
 }
 
 int main(int argc, const char * argv[]) {
-  
-  int arr[] = {1, 10, 6, 9};
-  int arr2[] = {3, 14};
-  std::list<int> l;
-  l.push_back(1);
-  l.erase(l.begin());
-  
-  int pivot = 0;
-  std::vector<MyClass> v;
-  MyClass myclass_arr[2];
-  
-  v.push_back(MyClass());
-  quick_sort(arr, 0, 3);
-  
-  std::vector<int> vint{1, 2, 3};
-  std::swap(vint[0], vint[2]);
-  
-  for (auto &i: vint ) {
-    std::cout << i << std::endl;
-  }
-  
-  //std::cout << "pivot: " << pivot << std::endl;
-  
-  /*
-  for (auto i: arr) {
-    std::cout << i << std::endl;
-  }
-   */
-  
-  /*
-  int *merged = merge(arr, 4, arr2, 2);
-  
-  for (int i = 0; i < (4 + 2); i++)
-    std::cout << merged[i] << "\n";
-  */
-  
-  
-  
-  boost::asio::io_service io_service;
-  io_service.run();
-  
-  //test_add_node();
-  //test_remove_dups();
-  //test_find_node();
-  //test_delete_list();
   RUN_TEST(test_delete_list)
   RUN_TEST(test_add_node)
   RUN_TEST(test_remove_dups2)
   
-  //printf ("%x\n", 0x1 << 8 );
-  
-  unsigned short x = 0x8181;
-  unsigned short y = 0x8100;
-  
-  bool flag = true;
-  
-  
-  //printf("%d\n", y);
-  
-  
-  /*
-  for (int i = 0; i < 8; ++i) {
-    unsigned short mask_r = 1 << i;
-    unsigned short mask_l = 1 << (15 - i);
-    //printf("mask_l = %x, mask_r = %x\n", mask_l, mask_r);
-    printf("left: 0x%x, right: 0x%x\n", (x & mask_l), (mask_r & x));
-    
-    flag = ((x & mask_l) && (mask_r & x)) || (!(x & mask_l) && !(mask_r & x));
-
-  }
-  
-  printf("flag = %d\n", flag);
-  
-  unsigned char b = 1;
-  */
-  /*
-  for (int i = 0; i < 8; ++i) {
-    printf("b << %d = 0x%x\n", i, b << i);
-  }
-   */
-  
-  //unsigned int ux = 0x88099011;
-  
-  //printf("%d\n", number_is_palindrom(ux));
-  //printf("%x\n", swap_nibbles(0x21));
-  //assert(set_bit(1, 15) == 0x00008001);
-  //assert(set_bits(1, BIT31::value | BIT1::value) == 0x80000003);
-  //printf("%x\n", (BIT31::value | BIT1::value) | 1);
   RUN_TEST(test_reverser_list)
   RUN_TEST(test_remove_node)
-  //test_partition();
-  //for (int j = 0; j <= 3; j++) printf("j, %d\n", j, arr[j]);
-  //char s[] = {'a', 'b', 'c', '\0'};
-  //permute(s, 0, 2);
-  /*
-  std::vector<int> v1{1, 2, 3};
-  std::vector<int> v2(v1.size());
-  std::copy_if(v1.begin(), v1.end(), v2.begin(), [](int i) {
-    return i % 2 == 0;
-  });
-  v2.shrink_to_fit();
-  
-  for (auto i: v2) {
-    std::cout << i << "\n";
-  }
-   */
-  //test_polynomial();
-  //test_lrucache();
-  //test_quick_sort();
   RUN_TEST(test_is_palindrome)
   RUN_TEST(test_find_node)
   RUN_TEST(test_tree)
@@ -826,7 +710,6 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_nqueens)
 
   return 0;
-  
 }
 
 
