@@ -9,20 +9,21 @@
 #include <iostream>
 #include <vector>
 #include <assert.h>
-#include "sort.h"
-#include "lists.h"
 #include <set>
 #include <string>
 #include <algorithm>
 #include <list>
 #include <unordered_map>
-#include "tree.h"
 #include <map>
+
 #include "randomexamples.h"
 #include "strings.h"
 #include "tree_tests.h"
 #include "expr_tests.h"
 #include "nqueens.h"
+#include "sort.h"
+#include "lists.h"
+#include "tree.h"
 
 namespace detail {
   template <int N> struct BIT {
