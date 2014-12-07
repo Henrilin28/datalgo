@@ -7,26 +7,35 @@ LD_FLAGS = -L/usr/local/lib/
 CXX_FLAGS = -std=c++11 -Wall
 HEADERS = $(wildcard *.h) $(wildcard *.hpp)
 CFLAGS = -I/usr/local/include
+
 ifeq ($(TEST), 1)  
-CFLAGS += -DTEST
+	CFLAGS += -DTEST
+endif
+
+ifndef CXX
+	CXX = g++
+endif
+
+ifndef CC
+	CC = clang
 endif
 
 interview: main.o sort.o lists.o randomexamples.o strings.o expr.o expr_tests.o color_region.o\
 	tree_tests.o nqueens.o
-	g++ -g $(LD_FLAGS) $(BOOST_LFLAGS)  -o interview main.o sort.o lists.o \
+	$(CXX) -g $(LD_FLAGS) $(BOOST_LFLAGS)  -o interview main.o sort.o lists.o \
 		randomexamples.o strings.o tree_tests.o expr_tests.o expr.o color_region.o\
 		nqueens.o
 
 
 
 %.o: %.cpp
-	g++ -g $(CFLAGS) $(CXX_FLAGS) -c $<
+	$(CXX) -g $(CFLAGS) $(CXX_FLAGS) -c $<
 
 %.o: %.cxx
-	g++ -g $(CFLAGS) $(CXX_FLAGS) -c $<
+	$(CXX) -g $(CFLAGS) $(CXX_FLAGS) -c $<
 
 %.o: %.c
-	cc -c $(CFLAGS) $<
+	$(CC) -c $(CFLAGS) $<
 
 all: interview
 
