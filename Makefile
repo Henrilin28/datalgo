@@ -12,9 +12,10 @@ CFLAGS += -DTEST
 endif
 
 interview: main.o sort.o lists.o randomexamples.o strings.o expr.o expr_tests.o color_region.o\
-	tree_tests.o
+	tree_tests.o nqueens.o
 	g++ -g $(LD_FLAGS) $(BOOST_LFLAGS)  -o interview main.o sort.o lists.o \
-		randomexamples.o strings.o tree_tests.o expr_tests.o expr.o color_region.o
+		randomexamples.o strings.o tree_tests.o expr_tests.o expr.o color_region.o\
+		nqueens.o
 
 
 

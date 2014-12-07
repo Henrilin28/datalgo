@@ -23,6 +23,7 @@
 #include "strings.h"
 #include "tree_tests.h"
 #include "expr_tests.h"
+#include "nqueens.h"
 
 namespace detail {
   template <int N> struct BIT {
@@ -655,30 +656,6 @@ void array_sub_arrays(std::vector<int> vec) {
 
 std::list<std::vector<int>> _array_sub_arrays(std::vector<int> vec) {
   
-  /*
-  std::size_t offset = 0;
-  
-  while (offset < vec.size()) {
-    std::vector<int> work_vec(vec.size() - offset);
-    std::copy(vec.begin() + offset, vec.end(), work_vec.begin());
-    work_vec.shrink_to_fit();
-
-    for (int i = 0; i < work_vec.size(); i++) {
-      int num = pow(2, i) - 1;
-      std::vector<int> sub_array;
-      for (int j = 0; j <= work_vec.size(); j++) {
-        if (num & (1 << j))
-          sub_array.push_back(work_vec[j]);
-        
-      }
-      for (auto e: sub_array)
-        std::cout << e << " ";
-      std::cout << "\n";
-    }
-    offset++;
-  }
-   */
-  
   std::list<std::vector<int>> l;
   
   for (int i = 0; i < vec.size(); i++) {
@@ -846,7 +823,7 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_free_list)
   RUN_TEST(test_max_sum_subarray)
   RUN_TEST(test_longest_inc_seq)
-  RUN_TEST(test_sub_arr)
+  RUN_TEST(test_nqueens)
 
   return 0;
   
