@@ -1,13 +1,13 @@
 //
 //  strings.h
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 11/11/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 
-#ifndef __interview__strings__
-#define __interview__strings__
+#ifndef __datalgo__strings__
+#define __datalgo__strings__
 
 #include <stdio.h>
 #include <string>
@@ -20,4 +20,4 @@ bool test_find_first_non_repeating_char();
 bool test_string_in_string();
 bool test_revers_string();
 
-#endif /* defined(__interview__strings__) */
+#endif /* defined(__datalgo__strings__) */

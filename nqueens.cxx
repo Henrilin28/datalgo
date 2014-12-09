@@ -1,3 +1,10 @@
+//
+//  nqueens.h
+//  datalgo
+//  Created by Iyed Bennour on 07/12/2014.
+//  Copyright (c) 2014 Iyed Bennour. All rights reserved.
+//
+
 #include <iostream>
 #include <vector>
 #include <sstream>

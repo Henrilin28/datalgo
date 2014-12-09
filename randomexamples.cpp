@@ -1,6 +1,6 @@
 //
 //  randomexamples.cpp
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 09/11/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.

@@ -1,6 +1,16 @@
+//
+//  color_region.cpp
+//  datalgo
+//
+//  Copyright (c) 2014 Iyed Bennour. All rights reserved.
+//
+
+
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <exception>
+#include <stdexcept>
 
 class Image {
 public:
@@ -17,23 +27,27 @@ public:
     }
     
     unsigned int get_color(std::size_t line, std::size_t col) {
+        if (!is_valid(line, col))
+            throw std::invalid_argument("invalid line, col");
         return _img[col][line];
     }
     
     void set_color(std::size_t line, std::size_t col, unsigned int color) {
+        if (!is_valid(line, col))
+            throw std::invalid_argument("invalid line, col");
         _img[col][line] = color;
     }
     
-    bool is_valid(std::size_t line, std::size_t col) {
+    bool is_valid(int line, int col) {
         return (line < _img[0].size() && col < _img.size() && col >= 0 && line >= 0);
     }
     
-    void color_zone(std::size_t line, std::size_t col, unsigned int color) {
+    void color_zone(int line, int col, unsigned int color) {
         _color_zone(line, col, get_color(line, col), color);
     }
     
     //recursive
-    void _color_zone(std::size_t line, std::size_t col, unsigned int color, unsigned int target) {
+    void _color_zone(int line, int col, unsigned int color, unsigned int target) {
     
         if (is_valid(line, col) && get_color(line, col) == color) {
             set_color(line, col, target);

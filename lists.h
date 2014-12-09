@@ -1,13 +1,13 @@
 //
 //  lists.h
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 28/10/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 
-#ifndef __interview__lists__
-#define __interview__lists__
+#ifndef __datalgo__lists__
+#define __datalgo__lists__
 
 
 #ifdef __cplusplus
@@ -39,12 +39,11 @@ extern "C" {
   void free_list(node_t **head);
   void reverse_list(node_t **phead);
   node_t* find_last_n(node_t *head, size_t n);
-  int test_find_last_n();
-  int test_free_list();
+  
   
 #ifdef __cplusplus
 }
 #endif
 
 
-#endif /* defined(__interview__lists__) */
+#endif /* defined(__datalgo__lists__) */

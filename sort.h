@@ -1,13 +1,13 @@
 //
 //  sort.h
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 21/10/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 
-#ifndef interview_sort_h
-#define interview_sort_h
+#ifndef __datalgo__randomexamples__
+#define __datalgo__randomexamples__
 
 
 #ifdef __cplusplus
@@ -23,4 +23,4 @@ extern "C" {
 #endif
 
 
-#endif
+#endif /* defined(__datalgo__sort__ */

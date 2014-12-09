@@ -1,13 +1,13 @@
 //
 //  expr.h
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 19/11/14.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 
-#ifndef __interview__expr__
-#define __interview__expr__
+#ifndef __datalgo__expr__
+#define __datalgo__expr__
 
 #include <stdio.h>
 
@@ -53,4 +53,4 @@ private:
 
 std::vector<std::shared_ptr<IExpr>> find_solution(std::vector<std::shared_ptr<IExpr>>, std::shared_ptr<IExpr> sofar, int target);
 
-#endif /* defined(__interview__expr__) */
+#endif /* defined(__datalgo__expr__) */

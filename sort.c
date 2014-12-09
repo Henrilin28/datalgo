@@ -1,6 +1,6 @@
 //
 //  sort.c
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 22/10/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.

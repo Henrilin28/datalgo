@@ -1,13 +1,13 @@
 //
 //  randomexamples.h
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 09/11/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 
-#ifndef __interview__randomexamples__
-#define __interview__randomexamples__
+#ifndef __datalgo__randomexamples__
+#define __datalgo__randomexamples__
 
 #include <stdio.h>
 #include <vector>
@@ -173,24 +173,21 @@ set_combinations_iter(const std::vector<T>& set) {
   return combinations.top();
 }
 
-
-bool test_set_combinations();
-
-
 void french_flag(int arr[], int len, int low, int high);
 size_t find_min_plt(size_t arr[], size_t len, size_t dep[], int len2);
-bool test_find_min_plt();
+bool check_paren(const std::string expr);
+bool is_sorted(int arr[], int start, int end);
 
+
+bool test_set_combinations();
+bool test_find_min_plt();
 bool test_permut();
 bool test_remove_dups_from_array();
 bool test_binary_search();
 bool test_french_flag();
 bool test_sortbin2();
 bool test_sortbin3();
-
-bool check_paren(const std::string expr);
 bool test_check_paren();
-bool is_sorted(int arr[], int start, int end);
 bool test_is_sorted();
 
-#endif /* defined(__interview__randomexamples__) */
+#endif /* defined(__datalgo__randomexamples__) */

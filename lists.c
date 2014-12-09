@@ -1,14 +1,16 @@
 //
 //  lists.c
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 28/10/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 #include <stdlib.h>
 #include <string.h>
-#include "lists.h"
 #include <stdio.h>
+
+#include "lists.h"
+
 
 node_t* new_node(int val) {
   node_t *n = (node_t *) malloc(sizeof(node_t));
@@ -95,22 +97,6 @@ void free_list(node_t **head) {
   
   *head = NULL;
   
-}
-
-int test_free_list() {
-  node_t *head = NULL;
-  add_node(&head, 1);
-  add_node(&head, 2);
-  add_node(&head, 3);
-  add_node(&head, 4);
-  add_node(&head, 5);
-  add_node(&head, 6);
-  
-  free_list(&head);
-  if (head == NULL && list_len(head) == 0)
-    return 1;
-  else
-    return 0;
 }
 
 node_t* remove_list_dups(node_t **head) {
@@ -229,13 +215,11 @@ node_t* find_node_rec(node_t *head, int val) {
     return find_node_rec(head->next, val);
 }
 
-
 /*
  *
  * returns a pointer to the first of the last n elements of
  * a list or NULL if n > length of the list
  */
-
 node_t* find_last_n(node_t *head, size_t n) {
   node_t *p1 = head;
   while (--n && p1 ) {
@@ -253,18 +237,5 @@ node_t* find_last_n(node_t *head, size_t n) {
   return p2;
 }
 
-/* #ifdef TEST */
-int test_find_last_n() {
-  node_t *head = NULL;
-  add_node(&head, 1);
-  add_node(&head, 2);
-  add_node(&head, 3);
-  add_node(&head, 4);
-  add_node(&head, 5);
-  add_node(&head, 6);
-  node_t *n = find_last_n(head, 6);
-  return n->val == 1;
-  
-}
-/* #endif */
+
 

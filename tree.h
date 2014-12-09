@@ -1,13 +1,13 @@
 //
 //  tree.h
-//  interview
+//  datalgo
 //
 //  Created by Iyed Bennour on 06/11/2014.
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 
-#ifndef __interview__tree__
-#define __interview__tree__
+#ifndef __datalgo__tree__
+#define __datalgo__tree__
 
 #include <iostream>
 #include <stack>
@@ -267,4 +267,4 @@ private:
 
 
 
-#endif /* defined(__interview__tree__) */
+#endif /* defined(__datalgo__tree__) */
