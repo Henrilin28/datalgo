@@ -20,7 +20,6 @@
 #include "strings.h"
 #include "tree_tests.h"
 #include "expr_tests.h"
-#include "nqueens.h"
 #include "sort.h"
 #include "list.h"
 #include "tree.h"
@@ -71,7 +70,6 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_tree_length)
   RUN_TEST(test_tree_balanced)
   RUN_TEST(test_free_list)
-  RUN_TEST(test_nqueens)
 
   return 0;
 }

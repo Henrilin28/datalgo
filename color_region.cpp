@@ -94,7 +94,6 @@ public:
 
 private:    
     std::vector<std::vector<unsigned int>> _img;
-    
 };
 
 
