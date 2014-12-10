@@ -16,7 +16,7 @@
 #include <unordered_map>
 #include <map>
 
-#include "randomexamples.h"
+#include "miscellaneous.h"
 #include "strings.h"
 #include "tree_tests.h"
 #include "expr_tests.h"
@@ -51,7 +51,7 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_reverser_list)
   RUN_TEST(test_remove_dups_from_array)
   RUN_TEST(test_string_in_string)
-  RUN_TEST(test_revers_string)
+  RUN_TEST(test_reverse_string)
   RUN_TEST(test_find_first_non_repeating_char)
   RUN_TEST(test_binary_search)
   RUN_TEST(test_permut)
@@ -68,12 +68,11 @@ int main(int argc, const char * argv[]) {
   RUN_TEST(test_node_per_level)
   //RUN_TEST(test_set_combinations)
   RUN_TEST(test_is_bst)
-  RUN_TEST(test_is_sorted)
   RUN_TEST(test_tree_length)
   RUN_TEST(test_tree_balanced)
   RUN_TEST(test_free_list)
   RUN_TEST(test_nqueens)
-  
+
   return 0;
 }
 

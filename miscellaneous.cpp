@@ -6,13 +6,16 @@
 //  Copyright (c) 2014 Iyed Bennour. All rights reserved.
 //
 
-#include "randomexamples.h"
-#include <math.h>
 #include <unordered_map>
 #include <iostream>
 #include <vector>
 #include <limits>
 #include <stack>
+#include <algorithm>
+#include <math.h>
+
+#include "miscellaneous.h"
+
 
 
 /*
@@ -32,8 +35,6 @@ int remove_dups_from_array(int arr[], unsigned int len) {
   }
   return next_slot;
 }
-
-
 
 node_t *add_numbers_as_list(node_t *head1, node_t *head2) {
   node_t *new_head = NULL;
@@ -133,8 +134,7 @@ void sortbin(int arr[], int len) {
  another way
  */
 void sortbin2(int arr[], int len) {
-  
-  
+
   int i = 0;
   int j = len - 1;
   
@@ -166,70 +166,6 @@ void sortbin3(int arr[], int len) {
   }
 }
 
-bool test_sortbin2() {
-  int arr1[] = {1, 1, 0, 0, 0, 1, 1, 1};
-  int arr2[] = {0, 0, 0, 0, 1, 0, 0, 1};
-  int arr3[] = {0, 1, 0, 1, 0, 1, 0, 1};
-  int arr4[] = {0, 0, 0, 0, 1, 1, 0, 1};
-  
-  sortbin2(arr1, 8);
-  for (auto i: arr1) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  
-  sortbin2(arr2, 8);
-  for (auto i: arr2) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  
-  sortbin2(arr3, 8);
-  for (auto i: arr3) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  
-  sortbin2(arr4, 8);
-  for (auto i: arr4) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  return true;
-}
-
-bool test_sortbin3() {
-  int arr1[] = {1, 1, 0, 0, 0, 1, 1, 1};
-  int arr2[] = {0, 0, 0, 0, 1, 0, 0, 1};
-  int arr3[] = {0, 1, 0, 1, 0, 1, 0, 1};
-  int arr4[] = {0, 0, 0, 0, 1, 1, 0, 1};
-  
-  sortbin3(arr1, 8);
-  for (auto i: arr1) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  
-  sortbin3(arr2, 8);
-  for (auto i: arr2) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  
-  sortbin3(arr3, 8);
-  for (auto i: arr3) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  
-  sortbin3(arr4, 8);
-  for (auto i: arr4) {
-    std::cout << i << " ";
-  }
-  std::cout << "\n";
-  return true;
-}
-
 
 bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index) {
   if (last < first)
@@ -248,120 +184,22 @@ bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& in
   }
 }
 
-void french_flag(int arr[], int len, int low, int high) {
-  
-  int first = 0;
-  int last = len - 1;
-  int i = 0;
-  
-  
-  while (i < last) {
-    
-    if (arr[i] == low) {
-      std::swap(arr[i], arr[first++]);
-      i++;
-    } else if (arr[i] == high) {
-      std::swap(arr[i], arr[last--]);
-    } else {
-      i++;
+bool check_paren(const std::string expr) {
+  bool res = true;
+  std::stack<char> stack;
+  stack.push(expr[0]);
+  for (int i = 1; i < expr.size(); i++) {
+    if (!stack.empty() && stack.top() == '(' && expr[i] == ')') {
+      stack.pop();
+    }
+    else if (expr[i] == '(' || expr[i] == ')') {
+      stack.push(expr[i]);
     }
   }
-  
+  res = stack.size() == 0;
+  return res;
 }
 
-bool test_french_flag() {
-  int arr[] = {1, 1, 2, 1, 2, 3, 3, 1};
-  // 1, 1, 1, 2, 2, 3, 3
-  french_flag(arr, 8, 1, 3);
-  for (auto i: arr) std::cout << i << "\n";
-  return true;
-}
-
-bool test_binary_search() {
-  int arr[] = {1, 3, 5, 5, 11, 20};
-  size_t index = -1;
-  bool ret = binary_search(arr, 0, 5, 9, index);
-  ret = index == -1;
-  ret &= binary_search(arr, 0, 5, 20, index);
-  ret &= index == 5;
-  return ret;
-}
-
-bool test_remove_dups_from_array() {
-  bool ret = true;
-  int arr[] = {1, 0, 0, 2, 2, 2, 4, 3, 3, 5, 6, 6};
-  int result[] = {1, 0, 2, 4, 3, 5, 6};
-  
-  int index = remove_dups_from_array(arr, 12);
-  
-  
-  for (int j = 0; j < index; j++) {
-    std::cout << arr[j] << "\n";
-  }
-  
-  
-  ret = std::equal(arr, arr + 7, result);
-  
-  return ret;
-}
-
-
-
-size_t factorial(size_t n) {
-  if (n == 0) return 1;
-  else return n*factorial(n - 1);
-}
-
-bool test_permut() {
-  std::vector<int> syms{1, 2, 3, 4, 5};
-  std::vector<int> sofar;
-  
-  auto s = permutations(syms, sofar);
-  
-  /*
-   for (auto e: s){
-   for (auto i: e)
-   std::cout << i;
-   std::cout << "\n";
-   }
-   */
-  
-  return factorial(syms.size()) == s.size();
-}
-
-int* createOneZeroArray(int len)
-{
-  int* arr = new int[len];
-  
-  for(int i = 0; i < len; ++i){
-    arr[i] = rand() % 2;
-  }
-  
-  return arr;
-}
-
-void test_sortbin() {
-  
-  for (int j = 0; j < 5; j++) {
-    int *parr = createOneZeroArray(10);
-    
-    for (int i = 0; i < 10; i++) {
-      std::cout << parr[i] << " ";
-    }
-    std::cout << "\n";
-    
-    sortbin(parr, 10);
-    
-    for (int i = 0; i < 10; i++) {
-      std::cout << parr[i] << " ";
-    }
-    
-    std::cout << "\n";
-    
-    delete [] parr;
-  }
-  
-}
 
 int find_min_plt(int arr[], int len, int dep[], int len2) {
   int A = 1;
@@ -407,6 +245,168 @@ int find_min_plt2(int arr[], int dep[], int len) {
 }
 
 
+/*
+ * example input: 1, 1, 2, 1, 2, 3, 3, 1
+ * output: 1, 1, 1, 2, 2, 3, 3
+ * without using sort i.e. in linear time.
+ */
+void french_flag(int arr[], int len, int low, int high) {
+  
+  int first = 0;
+  int last = len - 1;
+  int i = 0;
+  while (i < last) {
+    
+    if (arr[i] == low) {
+      std::swap(arr[i], arr[first++]);
+      i++;
+    } else if (arr[i] == high) {
+      std::swap(arr[i], arr[last--]);
+    } else {
+      i++;
+    }
+  }
+  
+}
+
+int* createOneZeroArray(int len) {
+  int* arr = new int[len];
+  
+  for(int i = 0; i < len; ++i){
+    arr[i] = rand() % 2;
+  }
+  
+  return arr;
+}
+
+static bool _is_sorted(int arr[], int len) {
+  for (int i = 0; i < len - 1; i++) {
+    if (arr[i] > arr[i + 1])
+      return false;
+  }
+}
+
+void test_sortbin() {
+  
+  bool ret = true;
+
+  for (int j = 0; j < 5; j++) {
+    int *arr = createOneZeroArray(10);
+  
+    sortbin(arr, 10);
+      
+    ret &= _is_sorted(arr, 10);
+    delete [] arr;
+  }
+  
+}
+
+bool test_sortbin2() {
+  int arr1[] = {1, 1, 0, 0, 0, 1, 1, 1};
+  int arr2[] = {0, 0, 0, 0, 1, 0, 0, 1};
+  int arr3[] = {0, 1, 0, 1, 0, 1, 0, 1};
+  int arr4[] = {0, 0, 0, 0, 1, 1, 0, 1};
+  
+  sortbin2(arr1, 8);
+  if (!_is_sorted(arr1, 8))
+    return false;
+  
+  sortbin2(arr2, 8);
+  if (!_is_sorted(arr2, 8))
+    return false;
+  
+  sortbin2(arr3, 8);
+  if (!_is_sorted(arr3, 8))
+    return false;
+  
+  sortbin2(arr4, 8);
+  if (!_is_sorted(arr4, 8))
+    return false;
+  
+  return true;
+}
+
+bool test_sortbin3() {
+  int arr1[] = {1, 1, 0, 0, 0, 1, 1, 1};
+  int arr2[] = {0, 0, 0, 0, 1, 0, 0, 1};
+  int arr3[] = {0, 1, 0, 1, 0, 1, 0, 1};
+  int arr4[] = {0, 0, 0, 0, 1, 1, 0, 1};
+  
+  sortbin3(arr1, 8);
+  if (!_is_sorted(arr1, 8))
+    return false;
+  
+  sortbin3(arr2, 8);
+  if (!_is_sorted(arr2, 8))
+    return false;
+  
+  sortbin3(arr3, 8);
+  if (!_is_sorted(arr3, 8))
+    return false;
+  
+  sortbin3(arr4, 8);
+  if (!_is_sorted(arr4, 8))
+    return false;
+  
+  return true;
+}
+
+bool test_french_flag() {
+  int arr[] = {1, 1, 2, 1, 2, 3, 3, 1};
+  // 1, 1, 1, 2, 2, 3, 3
+  french_flag(arr, 8, 1, 3);
+  if (!_is_sorted(arr, 8))
+    return false;
+  return true;
+}
+
+bool test_binary_search() {
+  int arr[] = {1, 3, 5, 5, 11, 20};
+  size_t index = -1;
+  bool ret = binary_search(arr, 0, 5, 9, index);
+  ret = index == -1;
+  ret &= binary_search(arr, 0, 5, 20, index);
+  ret &= index == 5;
+  return ret;
+}
+
+bool test_remove_dups_from_array() {
+  bool ret = true;
+  int arr[] = {1, 0, 0, 2, 2, 2, 4, 3, 3, 5, 6, 6};
+  int result[] = {1, 0, 2, 4, 3, 5, 6};
+  
+  int index = remove_dups_from_array(arr, 12);
+  
+  
+  for (int j = 0; j < index; j++) {
+    std::cout << arr[j] << "\n";
+  }
+  
+  
+  ret = std::equal(arr, arr + 7, result);
+  
+  return ret;
+}
+
+
+
+unsigned int factorial(unsigned int n) {
+  if (n == 0) return 1;
+  else return n * factorial(n - 1);
+}
+
+bool test_permut() {
+
+  std::vector<int> syms{1, 2, 3, 4, 5};
+  std::vector<int> sofar;
+  
+  auto s = permutations(syms, sofar);
+  
+  return factorial(syms.size()) == s.size();
+}
+
+
+
 bool test_find_min_plt() {
   int arr[] = {900, 940, 950, 1100, 1500, 1800};
   int dep[] = {910, 1200, 1120, 1130, 1900, 2000};
@@ -418,21 +418,6 @@ bool test_find_min_plt() {
   return true;
 }
 
-bool check_paren(const std::string expr) {
-  bool res = true;
-  std::stack<char> stack;
-  stack.push(expr[0]);
-  for (int i = 1; i < expr.size(); i++) {
-    if (!stack.empty() && stack.top() == '(' && expr[i] == ')') {
-      stack.pop();
-    }
-    else if (expr[i] == '(' || expr[i] == ')') {
-      stack.push(expr[i]);
-    }
-  }
-  res = stack.size() == 0;
-  return res;
-}
 
 bool test_check_paren() {
   return check_paren("(((a + b))(c + d))()");
@@ -447,41 +432,5 @@ bool test_set_combinations() {
   return combinations.size() == pow(2, 23);
 }
 
-void _sortbin(int arr[], int len) {
-  int last_zero = 0;
-  int i = 0;
-  while (i < len) {
-    if (arr[i] == 0) {
-      std::swap(arr[i++], arr[last_zero++]);
-    }
-    else {
-      i++;
-    }
-  }
-}
 
-int x = 0;
 
-bool is_sorted(int arr[], int start, int end) {
-  
-  if (start < end) {
-    int half = (start + end) / 2;
-    x++;
-    if (arr[half] > arr[half + 1]) {
-      
-      return false;
-    }
-    else
-      return (is_sorted(arr, start, half) && is_sorted(arr, half + 1, end));
-    
-  }
-  return true;
-}
-
-bool test_is_sorted() {
-  bool ret = false;
-  int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 12};
-  ret = is_sorted(arr, 0, 11);
-  
-  return ret == false;
-}

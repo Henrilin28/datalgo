@@ -13,34 +13,9 @@
 #include <math.h>
 #include <strings.h>
 
-
 #include "sort.h"
 
-
-
-int partition_func(int arr[], int low, int high)
-{
-  
-  int low_boudary = low;
-  int pivot = high;
-  
-  for (int i = low; i < high; i++) {
-    if (arr[i] < arr[pivot]) {
-      int temp = arr[i];
-      arr[i] = arr[low_boudary];
-      arr[low_boudary] = temp;
-      low_boudary++;
-    }
-  }
-  
-  int temp = arr[pivot];
-  arr[pivot] = arr[low_boudary];
-  arr[low_boudary] = temp;
-  return low_boudary;
-}
-
-
-int partitioner(int arr[], int low, int high) {
+int partition(int arr[], int low, int high) {
   int pivot = high;
   int low_boudary = low;
   
@@ -66,7 +41,7 @@ void quick_sort(int arr[], int begin, int end)
   
   int pivot;
   if (end > begin) {
-    pivot = partitioner(arr, begin, end);
+    pivot = partition(arr, begin, end);
     //This test is needed for when the pivot
     //is at index 0 of the array. Note that this
     //is the worst case.
@@ -84,17 +59,9 @@ int* merge(int arr1[], unsigned int size1, int arr2[], unsigned int size2) {
   
   int *merged = (int *) malloc((size1 + size2) * sizeof(int));
   int i = 0, k = 0, j = 0;
-  int min_diff = INT_MAX;
-  unsigned int x, y;
+  
   
   while ( i < size1 && k < size2 ) {
-    
-    int diff = abs(arr1[i] - arr2[k]);
-    
-    if (diff < min_diff){
-      min_diff = diff;
-      x = i; y = k;
-    }
     
     if (arr1[i] <= arr2[k]) {
       merged[j] = arr1[i];
@@ -117,33 +84,11 @@ int* merge(int arr1[], unsigned int size1, int arr2[], unsigned int size2) {
   
   while (k < size2) {
     merged[j] = arr2[k];
-    j++;
     k++;
+    j++;
   }
   
-  printf("x = %d, y = %d, min diff = %d\n", x, y, min_diff);
   return merged;
-}
-
-
-int part(int arr[], int start, int end) {
-  int low_bounary = start;
-  int pivot = end;
-  
-  
-  for (int i = start; i < end; i++) {
-    if (arr[i] <= arr[pivot]) {
-      int temp = arr[i];
-      arr[i] = arr[low_bounary];
-      arr[low_bounary] = temp;
-      low_bounary++;
-    }
-  }
-    
-  int temp = arr[pivot];
-  arr[pivot] = arr[low_bounary];
-  arr[low_bounary] = temp;
-  return low_bounary;
 }
 
 

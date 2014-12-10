@@ -69,6 +69,16 @@ char find_first_non_repeating_char(const std::string& s) {
   return c;
 }
 
+
+bool is_palindrome(const char *s, size_t len) {
+  
+  for (int i = 0; i < len/2; i++) {
+    if (s[i] != s[len - 1 - i])
+      return false;
+  }
+  return true;
+}
+
 bool test_string_in_string() {
   const char *s1 = "iyed";
   const char *s2 = "bennour iyed";
@@ -76,7 +86,7 @@ bool test_string_in_string() {
   return str_in_str(s1, s2);
 }
 
-bool test_revers_string() {
+bool test_reverse_string() {
   std::string s("bennour");
   reverse_string(s);
   return s == std::string("ruonneb");

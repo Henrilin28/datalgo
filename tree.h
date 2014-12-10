@@ -89,7 +89,7 @@ public:
     return _is_balanced(_root);
   }
   
-  ~Tree() {
+  virtual ~Tree() {
       delete_nodes();
   }
   

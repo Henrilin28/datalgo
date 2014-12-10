@@ -18,6 +18,7 @@ char find_first_non_repeating_char(const std::string& s);
 
 bool test_find_first_non_repeating_char();
 bool test_string_in_string();
-bool test_revers_string();
+bool test_reverse_string();
+bool is_palindrome(const char *s, size_t len);
 
 #endif /* defined(__datalgo__strings__) */

@@ -17,7 +17,6 @@
 #include <iostream>
 #include <stack>
 
-
 #include "lists.h"
 
 int remove_dups_from_array(int arr[], unsigned int len);
@@ -28,9 +27,11 @@ int from_list_to_number2(node_t *head, unsigned int exp, int sofar);
 void sortbin(int arr[], int len);
 void sortbin2(int arr[], int len);
 void sortbin3(int arr[], int len);
-void test_sortbin();
-void special_sort(int arr[], size_t len);
+void french_flag(int arr[], int len, int low, int high);
 bool binary_search(int sorted[], size_t first, size_t last, int elem, size_t& index);
+bool check_paren(const std::string expr);
+void french_flag(int arr[], int len, int low, int high);
+size_t find_min_plt(size_t arr[], size_t len, size_t dep[], int len2);
 
 template <class T>
 std::set<std::vector<T>> permutations(const std::vector<T>& syms, const std::vector<T>& sofar) {
@@ -45,12 +46,7 @@ std::set<std::vector<T>> permutations(const std::vector<T>& syms, const std::vec
     for (int i = 0; i < syms.size(); i++) {
       
       std::vector<T> v;
-      /*
-       for (auto x: syms) {
-       if (x != syms[i])
-       v.push_back(x);
-       }
-       */
+      
       for(int j = 0; j < syms.size(); j++) {
         if (j != i) {
           v.push_back(syms[j]);
@@ -173,21 +169,17 @@ set_combinations_iter(const std::vector<T>& set) {
   return combinations.top();
 }
 
-void french_flag(int arr[], int len, int low, int high);
-size_t find_min_plt(size_t arr[], size_t len, size_t dep[], int len2);
-bool check_paren(const std::string expr);
-bool is_sorted(int arr[], int start, int end);
-
-
 bool test_set_combinations();
 bool test_find_min_plt();
 bool test_permut();
 bool test_remove_dups_from_array();
 bool test_binary_search();
 bool test_french_flag();
+void test_sortbin();
 bool test_sortbin2();
 bool test_sortbin3();
 bool test_check_paren();
 bool test_is_sorted();
+
 
 #endif /* defined(__datalgo__randomexamples__) */
