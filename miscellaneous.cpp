@@ -284,6 +284,7 @@ static bool _is_sorted(int arr[], int len) {
     if (arr[i] > arr[i + 1])
       return false;
   }
+  return true;
 }
 
 void test_sortbin() {
