@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "lists.h"
+#include "list.h"
 #include "list_tests.h"
 
 void print_node(node_t *n) {

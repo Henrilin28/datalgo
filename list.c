@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "lists.h"
+#include "list.h"
 
 
 node_t* new_node(int val) {

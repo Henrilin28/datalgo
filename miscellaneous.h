@@ -17,7 +17,7 @@
 #include <iostream>
 #include <stack>
 
-#include "lists.h"
+#include "list.h"
 
 int remove_dups_from_array(int arr[], unsigned int len);
 node_t *add_numbers_as_list(node_t *head1, node_t *head2);

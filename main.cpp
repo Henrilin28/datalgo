@@ -22,7 +22,7 @@
 #include "expr_tests.h"
 #include "nqueens.h"
 #include "sort.h"
-#include "lists.h"
+#include "list.h"
 #include "tree.h"
 #include "list_tests.h"
 

@@ -13,16 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-  
+
   typedef struct _node {
     int val;
     struct _node *next;
   } node_t;
-  
-  typedef struct {
-    node_t *head;
-    node_t *tail;
-  } list_t;
 
   typedef void(*func_ptr)(node_t *node);
 
