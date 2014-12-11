@@ -87,7 +87,7 @@ bool test_nqueens()
 
   bool ret = true;
 
-	std::set<std::vector<int>> solutions = solve(8);
+  std::set<std::vector<int>> solutions = solve(8);
 
   for (auto &e: solutions) {
     if (!is_solution(e))
