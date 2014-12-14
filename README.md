@@ -1,10 +1,12 @@
 datalgo
 =======
 
-Various data structures and algorithms examples in C/C++11.
+Datalgo is a repo containing various data structures and algorithms 
+implementations in C and C++. It is not intented to be a library nor production 
+ready.
 
-Fork and expand.
+Tested to compile only with clang on OS X but should compile without 
+gcc 4.8+ and a recent cygwin version with C++11 support.
 
-Test to compile only with clang on OS X
-
+You are welcome to fork and send pull requests.
 
