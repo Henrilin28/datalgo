@@ -6,11 +6,10 @@ ifeq ($(TEST), 1)
 	CFLAGS += -DTEST
 endif
 
-interview: main.o sort.o list.o miscellaneous.o strings.o expr.o expr_tests.o color_region.o\
+datalgo: main.o sort.o list.o miscellaneous.o strings.o expr.o expr_tests.o color_region.o\
 	tree_tests.o nqueens.o list_tests.o
-	$(CXX) -g -o interview main.o sort.o list.o \
-		miscellaneous.o strings.o tree_tests.o expr_tests.o expr.o color_region.o\
-		nqueens.o list_tests.o
+	@echo "building "$@
+	$(CXX) -g -o $@ $?
 
 
 
@@ -27,4 +26,7 @@ all: interview
 
 clean:
 	rm -f *.o
-	rm -f interview
+
+mrproper: clean
+	rm -f datalgo
+
