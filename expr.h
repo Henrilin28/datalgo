@@ -10,13 +10,11 @@
 #define __datalgo__expr__
 
 #include <stdio.h>
-
-
-
-
 #include <assert.h>
 #include <string>
 #include <vector>
+#include <memory>
+
 
 enum class Operation { ADD = 0, MINUS, MULT, DIV };
 const Operation ops[] = {Operation::ADD, Operation::MINUS, Operation::MULT, Operation::DIV};
